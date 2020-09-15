@@ -41,8 +41,6 @@ public class TileManager : MonoBehaviour
                 {
                     GameObject.Instantiate(background_sprites[1], new Vector3(i, j, 0), new Quaternion(0, 0, 0, 0), background_tiles_p.transform);
                 }
-                newTile = GameObject.Instantiate(base_tile, new Vector3(i, j, 0), new Quaternion(0, 0, 0, 0), coral_tiles_p.transform);
-                board[i, j] = newTile.GetComponent<Tile>(); 
             }
         }
         newTile = GameObject.Instantiate(base_tile, new Vector3(size_x / 2, 1, 0), new Quaternion(0, 0, 0, 0), coral_tiles_p.transform);
