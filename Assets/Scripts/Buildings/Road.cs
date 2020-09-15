@@ -8,5 +8,6 @@ public class Road : Building
     new void Start()
     {
         base.Start();
+        ActualBuildingType = BuildingType.Road;
     }
 }

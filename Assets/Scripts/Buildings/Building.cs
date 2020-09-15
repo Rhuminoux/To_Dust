@@ -6,6 +6,8 @@ using UnityEngine;
 public abstract class Building : MonoBehaviour
 {
     public string S_name;
+    public enum BuildingType { Road = 0, RessourceTank = 1, RessourcesProducer = 2, OffensiveInstallation = 3 }
+    public BuildingType ActualBuildingType;
     public enum LifeStatus { GoodShape = 1, BadShape = 2, Dead = 3};
     public LifeStatus ActualLifeStatus { get => I_currentLife >= (I_maxLife / 2) ? LifeStatus.GoodShape :
                                                 I_currentLife > 0 ? LifeStatus.BadShape :
@@ -22,6 +24,7 @@ public abstract class Building : MonoBehaviour
     public int I_sizeZ = 1;
 
     public int I_Level = 1;
+    public int I_maxLevel = 3;
 
     protected void Start()
     {
@@ -33,7 +36,11 @@ public abstract class Building : MonoBehaviour
         I_currentLife -= I_Damage;
         if(ActualLifeStatus == LifeStatus.BadShape)
         {
-            this.GetComponent<SpriteRenderer>().color = new Color(200, 200, 200); 
+            float f_ratio = I_currentLife / I_maxLife;
+
+            float f_colorValue = 255 * f_ratio; // Risque d'être tout noir, à tester.
+
+            this.GetComponent<SpriteRenderer>().color = new Color(f_colorValue, f_colorValue, f_colorValue); 
         }
         else if(ActualLifeStatus == LifeStatus.Dead)
         {

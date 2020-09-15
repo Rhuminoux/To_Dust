@@ -11,6 +11,7 @@ public class OffensiveInstallation : Building
     new void Start()
     {
         base.Start();
+        ActualBuildingType = BuildingType.OffensiveInstallation;
     }
 
 }
