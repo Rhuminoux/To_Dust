@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class RessourceTank : Building
 {
-    [Header("--= RessourceTank Attributes =--")]
     [Header("Tank Settings")]
+    [Header("--= RessourceTank Attributes =--")]
     public int I_ressouceTank = 100;
     // Start is called before the first frame update
     new void Start()
