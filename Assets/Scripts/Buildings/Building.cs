@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour
+public abstract class Building : MonoBehaviour
 {
     public string S_name;
     public enum LifeStatus { GoodShape = 1, BadShape = 2, Dead = 3};
@@ -16,15 +16,15 @@ public class Building : MonoBehaviour
     public int I_maxLife = 360;
     public int I_regenPoint = 1;
 
-    public int I_ressource = 1;
     public int I_creationCost = 100;
 
     public int I_sizeX = 1;
     public int I_sizeZ = 1;
 
-    void Start()
+    public int I_Level = 1;
+
+    protected void Start()
     {
-        TimeDayNightManager.TimePassed += AddRessourcesToStock_TimePassed;
         TimeDayNightManager.TimePassed += Regen_TimePassed;
     }
 
@@ -39,11 +39,6 @@ public class Building : MonoBehaviour
         {
             Destroy(this.GetComponent<GameObject>());
         }
-    }
-
-    public void AddRessourcesToStock_TimePassed(EventArgs e)
-    {
-        GO_ressourcesManager.GetComponent<RessourcesManager>().AddToStock(I_ressource);
     }
 
     public void Regen_TimePassed(EventArgs e)

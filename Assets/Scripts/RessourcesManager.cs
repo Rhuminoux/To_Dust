@@ -5,7 +5,7 @@ using UnityEngine;
 public class RessourcesManager : MonoBehaviour
 {
     public int I_currentStock;
-    public int I_maxStock;
+    public int I_maxStock = 1000;
 
     public bool RemoveToStock(int ressourcePoints)
     {
@@ -25,5 +25,10 @@ public class RessourcesManager : MonoBehaviour
             I_currentStock = I_currentStock > I_maxStock ? I_maxStock : I_currentStock;
         }
 
+    }
+
+    public void AddLimitStock(int stockRessource)
+    {
+        I_maxStock += stockRessource;
     }
 }
