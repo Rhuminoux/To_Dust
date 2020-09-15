@@ -43,7 +43,7 @@ public class TileManager : MonoBehaviour
                 }
             }
         }
-        newTile = GameObject.Instantiate(base_tile, new Vector3(size_x / 2, 1, 0), new Quaternion(0, 0, 0, 0), coral_tiles_p.transform);
+        newTile = GameObject.Instantiate(base_tile, new Vector3(size_x / 2, 1, -0.1f), new Quaternion(0, 0, 0, 0), coral_tiles_p.transform);
         newTile.GetComponent<SpriteRenderer>().sprite = tiles_sprite[4];
         board[size_x / 2, 1] = newTile.GetComponent<Tile>();
     }
@@ -54,7 +54,7 @@ public class TileManager : MonoBehaviour
 
         if ((sprite = GetTileSprite((int)x, (int)y)) != null)
         {
-            newTile = GameObject.Instantiate(base_tile, new Vector3(x, y, 0), new Quaternion(0, 0, 0, 0), coral_tiles_p.transform);
+            newTile = GameObject.Instantiate(base_tile, new Vector3(x, y, -0.1f), new Quaternion(0, 0, 0, 0), coral_tiles_p.transform);
             newTile.GetComponent<SpriteRenderer>().sprite = sprite;
             board[(int)x, (int)y] = newTile.GetComponent<Tile>();
             UpdateTiles();
