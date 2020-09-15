@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class RessourceProducer : Building
 {
+    [Header("--= RessourceProducer Attributes =--")]
+    [Header("Ressource Settings")]
     public int I_ressource = 1;
 
     // Start is called before the first frame update

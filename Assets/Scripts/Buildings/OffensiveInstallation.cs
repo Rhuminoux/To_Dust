@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class OffensiveInstallation : Building
 {
+    [Header("--= OffensiveInstallation Attributes =--")]
+    [Header("Fire Settings")]
     public int I_firePower;
     public float F_fireRate;
 
