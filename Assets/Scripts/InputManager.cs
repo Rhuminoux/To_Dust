@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    public TileManager tile_manager;
+
     RaycastHit2D hit;
+    GameObject newTile;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +19,9 @@ public class InputManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), -Vector2.up);
-            if (hit.collider != null)
+            if (hit.collider != null && hit.collider.tag.StartsWith("Background"))
             {
-                Debug.Log("touched something");
+                tile_manager.PlaceTile(hit.collider.transform.position.x, hit.collider.transform.position.y);
             }
         }
     }

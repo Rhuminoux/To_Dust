@@ -201,6 +201,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -286,6 +287,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4062888ac5a16e84e8c6bfe19950263d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tile_manager: {fileID: 1871887004}
 --- !u!1 &868676969
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,13 +425,14 @@ MonoBehaviour:
   size_y: 10
   tiles_sprite:
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: fdd2e1f238f5dd04fa5eb9b2ca8b7edd, type: 3}
+  - {fileID: 21300000, guid: ef303f2de8561bb4581ef4e5eb244a93, type: 3}
   - {fileID: 21300000, guid: ffa8f862ded53ef45af97d3534c06519, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: fdd2e1f238f5dd04fa5eb9b2ca8b7edd, type: 3}
   - {fileID: 21300000, guid: fdd2e1f238f5dd04fa5eb9b2ca8b7edd, type: 3}
   - {fileID: 21300000, guid: 869ce6cdcf6d71d448a32844dc04b716, type: 3}
   - {fileID: 21300000, guid: bb77a5a8ccd3b454aaf485263ccc0a93, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: ef303f2de8561bb4581ef4e5eb244a93, type: 3}
   - {fileID: 21300000, guid: b4e11ce4681eb364f99214b6bd895029, type: 3}
   - {fileID: 21300000, guid: ef303f2de8561bb4581ef4e5eb244a93, type: 3}
   - {fileID: 21300000, guid: 23a123349310e324ca0bae583f68689a, type: 3}

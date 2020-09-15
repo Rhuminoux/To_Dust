@@ -12,6 +12,8 @@ public class TileManager : MonoBehaviour
     public GameObject coral_tiles_p;
     public Tile[,] board;
     public GameObject base_tile;
+
+    private GameObject newTile;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,8 +29,6 @@ public class TileManager : MonoBehaviour
 
     private void CreateMap()
     {
-        GameObject newTile;
-
         for (int i = 0; i < size_x; ++i)
         {
             for (int j = 0; j < size_y; ++j)
@@ -45,11 +45,31 @@ public class TileManager : MonoBehaviour
         }
         newTile = GameObject.Instantiate(base_tile, new Vector3(size_x / 2, 1, 0), new Quaternion(0, 0, 0, 0), coral_tiles_p.transform);
         newTile.GetComponent<SpriteRenderer>().sprite = tiles_sprite[4];
-        newTile.GetComponent<Tile>().taken = true;
-        board[size_x / 2, size_y - 2] = newTile.GetComponent<Tile>();
+        board[size_x / 2, 1] = newTile.GetComponent<Tile>();
     }
 
-    public Sprite GetTileSprite(int x, int y)
+    public void PlaceTile(float x, float y)
+    {
+        Sprite sprite;
+
+        if ((sprite = GetTileSprite((int)x, (int)y)) != null)
+        {
+            newTile = GameObject.Instantiate(base_tile, new Vector3(x, y, 0), new Quaternion(0, 0, 0, 0), coral_tiles_p.transform);
+            newTile.GetComponent<SpriteRenderer>().sprite = sprite;
+            board[(int)x, (int)y] = newTile.GetComponent<Tile>();
+            UpdateTiles();
+        }
+    }
+
+    private void UpdateTiles()
+    {
+        for (int i = 0; i < size_x; ++i)
+            for (int j = 0; j < size_y; ++j)
+                if (board[i, j] != null)
+                    board[i, j].gameObject.GetComponent<SpriteRenderer>().sprite = GetTileSprite(i, j);
+    }
+
+    Sprite GetTileSprite(int x, int y)
     {
         return tiles_sprite[CheckAround(x, y)];
     }
@@ -58,13 +78,13 @@ public class TileManager : MonoBehaviour
     {
         int result = 0;
 
-        if (x != 0 && board[x - 1, y].taken != true)
+        if (x != 0 && board[x - 1, y]!= null)
             result += 8;
-        if (x != size_x - 1 && board[x + 1, y].taken != true)
+        if (x != size_x - 1 && board[x + 1, y] != null)
             result += 2;
-        if (y != 0 && board[x, y + 1].taken != true)
+        if (y != size_y - 1 && board[x, y + 1] != null)
             result += 1;
-        if (y != size_y - 1 && board[x, y - 1].taken != true)
+        if (y != 0 && board[x, y - 1] != null)
             result += 4;
         return result;
     }
