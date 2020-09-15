@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class RessourcesManager : MonoBehaviour
 {
-    public static int I_STOCK;
-    public int stock;
+    public int I_currentStock;
+    public int I_maxStock;
 
-    // Start is called before the first frame update
-    void Start()
+    public bool RemoveToStock(int ressourcePoints)
     {
-        
+        bool b_autoriseRemove = true;
+        if(I_currentStock - ressourcePoints < 0)
+        {
+            b_autoriseRemove = false;
+        }
+        return b_autoriseRemove;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddToStock(int ressourcePoints)
     {
-        stock = I_STOCK;
-    }
+        if(I_currentStock < this.I_maxStock)
+        {
+            I_currentStock += ressourcePoints;
+            I_currentStock = I_currentStock > I_maxStock ? I_maxStock : I_currentStock;
+        }
 
-    public static void AddToStock(int ressourcePoints)
-    {
-        I_STOCK += ressourcePoints;
     }
 }
