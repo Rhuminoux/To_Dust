@@ -5,8 +5,16 @@ using UnityEngine;
 
 public abstract class Building : MonoBehaviour
 {
+    public enum BuildingType
+    {
+        Road = 0,
+        RessourceTank = 1,
+        RessourcesProducer = 2,
+        OffensiveInstallation = 3
+    }
+
+
     public string S_name;
-    public enum BuildingType { Road = 0, RessourceTank = 1, RessourcesProducer = 2, OffensiveInstallation = 3 }
     public BuildingType ActualBuildingType;
     public enum LifeStatus { GoodShape = 1, BadShape = 2, Dead = 3};
     public LifeStatus ActualLifeStatus { get => I_currentLife >= (I_maxLife / 2) ? LifeStatus.GoodShape :
