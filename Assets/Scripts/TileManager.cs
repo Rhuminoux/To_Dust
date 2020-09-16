@@ -29,12 +29,6 @@ public class TileManager : MonoBehaviour
         CreateMap();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void CreateMap()
     {
         for (int i = 0; i < size_x; ++i)
