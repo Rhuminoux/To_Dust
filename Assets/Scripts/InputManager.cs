@@ -18,7 +18,7 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && !tile_shadow.activeSelf)
         {
             build_menu.SetActive(true);
             build_menu.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -32,6 +32,8 @@ public class InputManager : MonoBehaviour
                 tile_shadow.GetComponent<TileShadow>().type = hit.collider.gameObject.GetComponent<BuildMenu>().type;
                 tile_shadow.SetActive(true);
             }
+            else
+                tile_shadow.SetActive(false);
             build_menu.SetActive(false);
         }
 
