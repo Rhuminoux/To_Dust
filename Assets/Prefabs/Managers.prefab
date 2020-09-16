@@ -1,5 +1,85 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6635466286894543216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4833448685429818126}
+  - component: {fileID: 914876251074645389}
+  m_Layer: 0
+  m_Name: TileManager
+  m_TagString: TileManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4833448685429818126
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6635466286894543216}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7794944732334894699}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &914876251074645389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6635466286894543216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43865469814225c4a8606cae69b54fce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size_x: 20
+  size_y: 10
+  road_sprite:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: fdd2e1f238f5dd04fa5eb9b2ca8b7edd, type: 3}
+  - {fileID: 21300000, guid: ef303f2de8561bb4581ef4e5eb244a93, type: 3}
+  - {fileID: 21300000, guid: ffa8f862ded53ef45af97d3534c06519, type: 3}
+  - {fileID: 21300000, guid: fdd2e1f238f5dd04fa5eb9b2ca8b7edd, type: 3}
+  - {fileID: 21300000, guid: fdd2e1f238f5dd04fa5eb9b2ca8b7edd, type: 3}
+  - {fileID: 21300000, guid: 869ce6cdcf6d71d448a32844dc04b716, type: 3}
+  - {fileID: 21300000, guid: bb77a5a8ccd3b454aaf485263ccc0a93, type: 3}
+  - {fileID: 21300000, guid: ef303f2de8561bb4581ef4e5eb244a93, type: 3}
+  - {fileID: 21300000, guid: b4e11ce4681eb364f99214b6bd895029, type: 3}
+  - {fileID: 21300000, guid: ef303f2de8561bb4581ef4e5eb244a93, type: 3}
+  - {fileID: 21300000, guid: 23a123349310e324ca0bae583f68689a, type: 3}
+  - {fileID: 21300000, guid: 93c314d74d3e80b41bb98fba8a351f07, type: 3}
+  - {fileID: 21300000, guid: f5b478539ccaa1c47a35e929f7f1db98, type: 3}
+  - {fileID: 21300000, guid: 1c088bb42f976e24da04826d57304d59, type: 3}
+  - {fileID: 21300000, guid: 99a7ec27e033eff44956e0654e307567, type: 3}
+  building_sprites:
+  - {fileID: 21300000, guid: fdd2e1f238f5dd04fa5eb9b2ca8b7edd, type: 3}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: acd0be29515850147b37c97031f9e655, type: 3}
+  - {fileID: 21300000, guid: 74ae2e74795e525479ff53899a38afc0, type: 3}
+  background_sprites:
+  - {fileID: 3895453600595928543, guid: 6ec436c66dc6c3940928f5d902a1f92a, type: 3}
+  - {fileID: 608491505751060760, guid: 2fac6ef76f5978a43839646667e10bc9, type: 3}
+  water_tiles_p: {fileID: 0}
+  ground_tiles_p: {fileID: 0}
+  coral_tiles_p: {fileID: 0}
+  base_tile: {fileID: 4626028119317115056, guid: a93bab8b77e512d41af456475facf6cb, type: 3}
+  GO_ressourcesManager: {fileID: 0}
+  List_tilesBuilding:
+  - {fileID: 7403275823237853949, guid: 34a0b4cd43d9cb44f9d2f9213fd8822b, type: 3}
+  - {fileID: 1355816287976173534, guid: cc58669f9baa9f543942478c7c32469e, type: 3}
+  - {fileID: 1355816287976173534, guid: cc58669f9baa9f543942478c7c32469e, type: 3}
+  - {fileID: 820217041977305731, guid: b2821d1aa82bf984a8ea3a039721afae, type: 3}
 --- !u!1 &7794944732194819598
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +173,7 @@ Transform:
   m_LocalPosition: {x: 236.64021, y: 516.392, z: -42.88523}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7794944732748264337}
+  - {fileID: 4833448685429818126}
   - {fileID: 7794944732194819593}
   - {fileID: 7794944732570692409}
   - {fileID: 7794944732483172121}
@@ -193,82 +273,3 @@ MonoBehaviour:
   GO_TMP_ressource: {fileID: 0}
   I_currentStock: 250
   I_maxStock: 1000
---- !u!1 &7794944732748264343
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7794944732748264337}
-  - component: {fileID: 7794944732748264336}
-  m_Layer: 0
-  m_Name: TileManager
-  m_TagString: TileManager
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7794944732748264337
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7794944732748264343}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -236.64021, y: -516.392, z: 42.88523}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7794944732334894699}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7794944732748264336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7794944732748264343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43865469814225c4a8606cae69b54fce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size_x: 20
-  size_y: 10
-  tiles_sprite:
-  - {fileID: 0}
-  - {fileID: 21300000, guid: fdd2e1f238f5dd04fa5eb9b2ca8b7edd, type: 3}
-  - {fileID: 21300000, guid: ef303f2de8561bb4581ef4e5eb244a93, type: 3}
-  - {fileID: 21300000, guid: ffa8f862ded53ef45af97d3534c06519, type: 3}
-  - {fileID: 21300000, guid: fdd2e1f238f5dd04fa5eb9b2ca8b7edd, type: 3}
-  - {fileID: 21300000, guid: fdd2e1f238f5dd04fa5eb9b2ca8b7edd, type: 3}
-  - {fileID: 21300000, guid: 869ce6cdcf6d71d448a32844dc04b716, type: 3}
-  - {fileID: 21300000, guid: bb77a5a8ccd3b454aaf485263ccc0a93, type: 3}
-  - {fileID: 21300000, guid: ef303f2de8561bb4581ef4e5eb244a93, type: 3}
-  - {fileID: 21300000, guid: b4e11ce4681eb364f99214b6bd895029, type: 3}
-  - {fileID: 21300000, guid: ef303f2de8561bb4581ef4e5eb244a93, type: 3}
-  - {fileID: 21300000, guid: 23a123349310e324ca0bae583f68689a, type: 3}
-  - {fileID: 21300000, guid: 93c314d74d3e80b41bb98fba8a351f07, type: 3}
-  - {fileID: 21300000, guid: f5b478539ccaa1c47a35e929f7f1db98, type: 3}
-  - {fileID: 21300000, guid: 1c088bb42f976e24da04826d57304d59, type: 3}
-  - {fileID: 21300000, guid: 99a7ec27e033eff44956e0654e307567, type: 3}
-  building_sprites:
-  - {fileID: 21300000, guid: fdd2e1f238f5dd04fa5eb9b2ca8b7edd, type: 3}
-  - {fileID: 0}
-  - {fileID: 21300000, guid: acd0be29515850147b37c97031f9e655, type: 3}
-  - {fileID: 21300000, guid: 74ae2e74795e525479ff53899a38afc0, type: 3}
-  background_sprites:
-  - {fileID: 3895453600595928543, guid: 6ec436c66dc6c3940928f5d902a1f92a, type: 3}
-  - {fileID: 608491505751060760, guid: 2fac6ef76f5978a43839646667e10bc9, type: 3}
-  background_tiles_p: {fileID: 0}
-  coral_tiles_p: {fileID: 0}
-  base_tile: {fileID: 4626028119317115056, guid: a93bab8b77e512d41af456475facf6cb, type: 3}
-  GO_ressourcesManager: {fileID: 0}
-  List_tilesBuilding:
-  - {fileID: 7403275823237853949, guid: 34a0b4cd43d9cb44f9d2f9213fd8822b, type: 3}
-  - {fileID: 1355816287976173534, guid: cc58669f9baa9f543942478c7c32469e, type: 3}
-  - {fileID: 1355816287976173534, guid: cc58669f9baa9f543942478c7c32469e, type: 3}
-  - {fileID: 820217041977305731, guid: b2821d1aa82bf984a8ea3a039721afae, type: 3}
