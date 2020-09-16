@@ -20,6 +20,12 @@ public class OffensiveInstallation : Building
         base.Start();
         ActualBuildingType = BuildingType.OffensiveInstallation;
     }
+
+    public void Attack(GameObject enemy)
+    {
+        enemy.GetComponent<Enemy>().TakeDamage(I_firePower);
+    }
+
     public override void EvolveStatsCurrentBuilding(int level)
     {
         I_firePower = (int)this.GetType().GetField("I_firePowerL" + level).GetValue(this);

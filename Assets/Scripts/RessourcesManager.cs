@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class RessourcesManager : MonoBehaviour
 {
+    [Header("--= RessourcesManager Attributes =--")]
     public GameObject GO_TMP_ressource;
     public int I_currentStock = 100;
     public int I_maxStock = 1000;
