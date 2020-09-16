@@ -53,7 +53,8 @@ public class TileManager : MonoBehaviour
     public void PlaceTile(float x, float y, Building.BuildingType type)
     {
         GameObject go_tileBuilding = List_tilesBuilding[(int)type];
-        if(GO_ressourcesManager.GetComponent<RessourcesManager>().RemoveToStock(go_tileBuilding.GetComponent<Building>().I_creationCost))
+
+        if (GO_ressourcesManager.GetComponent<RessourcesManager>().RemoveToStock(go_tileBuilding.GetComponent<Building>().I_creationCost))
         {
             if (go_tileBuilding.GetComponent<Tile>().type == Building.BuildingType.Road)
             {
