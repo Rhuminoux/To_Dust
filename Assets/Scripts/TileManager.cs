@@ -7,6 +7,7 @@ public class TileManager : MonoBehaviour
     public int size_x = 20;
     public int size_y = 10;
     public List<Sprite> tiles_sprite;
+    public List<Sprite> building_sprites;
     public List<GameObject> background_sprites;
     public GameObject background_tiles_p;
     public GameObject coral_tiles_p;
@@ -24,7 +25,7 @@ public class TileManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void CreateMap()
@@ -48,16 +49,31 @@ public class TileManager : MonoBehaviour
         board[size_x / 2, 1] = newTile.GetComponent<Tile>();
     }
 
-    public void PlaceTile(float x, float y)
+    public void PlaceTile(float x, float y, Building.BuildingType type)
     {
-        Sprite sprite;
-
-        if ((sprite = GetTileSprite((int)x, (int)y)) != null)
+        if (type == 0)
         {
-            newTile = GameObject.Instantiate(base_tile, new Vector3(x, y, -0.1f), new Quaternion(0, 0, 0, 0), coral_tiles_p.transform);
-            newTile.GetComponent<SpriteRenderer>().sprite = sprite;
-            board[(int)x, (int)y] = newTile.GetComponent<Tile>();
-            UpdateTiles();
+            Sprite sprite;
+            if (sprite = GetTileSprite((int)x, (int)y))
+            {
+                newTile = GameObject.Instantiate(base_tile, new Vector3(x, y, -0.1f), new Quaternion(0, 0, 0, 0), coral_tiles_p.transform);
+                newTile.GetComponent<Tile>().CreateBuilding(type);
+                newTile.GetComponent<SpriteRenderer>().sprite = sprite;
+                board[(int)x, (int)y] = newTile.GetComponent<Tile>();
+                UpdateTiles();
+            }
+        }
+        else
+        {
+            int around = CheckAround((int)x, (int)y);
+
+            if (around == 1 || around == 2 || around == 4 || around == 8)
+            {
+                newTile = GameObject.Instantiate(base_tile, new Vector3(x, y, -0.1f), new Quaternion(0, 0, 0, 0), coral_tiles_p.transform);
+                newTile.GetComponent<Tile>().CreateBuilding(type);
+                newTile.GetComponent<SpriteRenderer>().sprite = building_sprites[(int)type];
+                board[(int)x, (int)y] = newTile.GetComponent<Tile>();
+            }
         }
     }
 
@@ -65,7 +81,7 @@ public class TileManager : MonoBehaviour
     {
         for (int i = 0; i < size_x; ++i)
             for (int j = 0; j < size_y; ++j)
-                if (board[i, j] != null)
+                if (board[i, j] != null && board[i, j].type == 0)
                     board[i, j].gameObject.GetComponent<SpriteRenderer>().sprite = GetTileSprite(i, j);
     }
 
@@ -78,7 +94,7 @@ public class TileManager : MonoBehaviour
     {
         int result = 0;
 
-        if (x != 0 && board[x - 1, y]!= null)
+        if (x != 0 && board[x - 1, y] != null)
             result += 8;
         if (x != size_x - 1 && board[x + 1, y] != null)
             result += 2;
