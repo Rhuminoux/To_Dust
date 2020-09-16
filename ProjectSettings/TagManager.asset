@@ -8,6 +8,7 @@ TagManager:
   - Tiles
   - BMenu
   - RessourcesManager
+  - TileManager
   layers:
   - Default
   - TransparentFX

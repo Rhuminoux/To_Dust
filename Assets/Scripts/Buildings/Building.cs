@@ -52,7 +52,6 @@ public abstract class Building : MonoBehaviour
     public int I_sizeX = 1;
     public int I_sizeZ = 1;
 
-
     protected void Start()
     {
         GO_ressourcesManager = GameObject.FindWithTag("RessourcesManager");
@@ -79,7 +78,7 @@ public abstract class Building : MonoBehaviour
         if (I_level < I_maxLevel)
         {
             I_level++;
-            int i_upgradeCost = (int)this.GetType().GetField("I_upgradeCost" + I_level).GetValue(this);
+            int i_upgradeCost = (int)this.GetType().GetField("I_upgradeCostL" + I_level).GetValue(this);
             if (GO_ressourcesManager.GetComponent<RessourcesManager>().RemoveToStock(i_upgradeCost))
             {
                 EvolveStatsCurrentBuilding(I_level);

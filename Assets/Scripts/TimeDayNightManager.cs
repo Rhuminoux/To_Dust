@@ -9,9 +9,9 @@ public class TimeDayNightManager : MonoBehaviour
     public delegate void TimePassedEventHandler(EventArgs e);
     public static event TimePassedEventHandler TimePassed;
 
-    private static readonly int I_SPEED_TIME = 25;
+    [Header("--= TimeDayNightManager Attributes =--")]
     public float F_ratioSpeedTime = 1;
-
+    private static readonly int I_SPEED_TIME = 25;
     public enum Period { Morning = 720 /*End Morning*/, Afternoon = 1080 /*End Afternoon*/, Evening = 1440 /*End Evening*/};
 
     public int I_numberOfHours { get => I_actualTime / 60; }
