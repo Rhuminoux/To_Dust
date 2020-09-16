@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 
 public abstract class Building : MonoBehaviour
@@ -20,7 +21,6 @@ public abstract class Building : MonoBehaviour
     };
 
     [Header("--= Building Attributes =--")]
-    public string S_name;
     public BuildingType ActualBuildingType;
     public GameObject GO_ressourcesManager;
 
@@ -39,7 +39,13 @@ public abstract class Building : MonoBehaviour
     public int I_creationCost = 100;
 
     [Header("Level Settings")]
-    public int I_Level = 1;
+    public int I_level = 1;
+    public int I_upgradeCostL2 = 50;
+    public int I_upgradeCostL3 = 100;
+    public int I_maxLifeL2 = 150;
+    public int I_maxLifeL3 = 150;
+    public int I_regenPointL2 = 2;
+    public int I_regenPointL3 = 3;
     public int I_maxLevel = 3;
 
     [Header("Size Settings")]
@@ -49,6 +55,7 @@ public abstract class Building : MonoBehaviour
 
     protected void Start()
     {
+        GO_ressourcesManager = GameObject.FindWithTag("RessourcesManager");
         TimeDayNightManager.TimePassed += Regen_TimePassed;
     }
 
@@ -65,6 +72,23 @@ public abstract class Building : MonoBehaviour
             Destroy(this.GetComponent<GameObject>());
         }
     }
+
+    public bool UprageCurrentBuilding()
+    {
+        bool b_isUpgraded = false;
+        if (I_level < I_maxLevel)
+        {
+            I_level++;
+            int i_upgradeCost = (int)this.GetType().GetField("I_upgradeCost" + I_level).GetValue(this);
+            if (GO_ressourcesManager.GetComponent<RessourcesManager>().RemoveToStock(i_upgradeCost))
+            {
+                EvolveStatsCurrentBuilding(I_level);
+                b_isUpgraded = true;
+            }
+        }
+        return b_isUpgraded;
+    }
+    public abstract void EvolveStatsCurrentBuilding(int level);
 
     public void Regen_TimePassed(EventArgs e)
     {

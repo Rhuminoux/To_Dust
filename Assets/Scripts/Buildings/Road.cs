@@ -10,4 +10,10 @@ public class Road : Building
         base.Start();
         ActualBuildingType = BuildingType.Road;
     }
+
+    public override void EvolveStatsCurrentBuilding(int level)
+    {
+        I_maxLife = (int)this.GetType().GetField("I_maxLifeL" + level).GetValue(this);
+        I_regenPoint = (int)this.GetType().GetField("I_regenPointL" + level).GetValue(this);
+    }
 }
