@@ -73,6 +73,7 @@ public class TileManager : MonoBehaviour
                 newTile.GetComponent<Tile>().CreateBuilding(type);
                 newTile.GetComponent<SpriteRenderer>().sprite = building_sprites[(int)type];
                 board[(int)x, (int)y] = newTile.GetComponent<Tile>();
+                UpdateTiles();
             }
         }
     }
