@@ -6,10 +6,13 @@ public class TileManager : MonoBehaviour
 {
     public int size_x = 20;
     public int size_y = 10;
-    public List<Sprite> tiles_sprite;
+    public List<Sprite> road_sprite;
     public List<Sprite> building_sprites;
+
     public List<GameObject> background_sprites;
-    public GameObject background_tiles_p;
+    public GameObject water_tiles_p;
+    public GameObject ground_tiles_p;
+
     public GameObject coral_tiles_p;
     public Tile[,] board;
     public GameObject base_tile;
@@ -40,16 +43,16 @@ public class TileManager : MonoBehaviour
             {
                 if (j == 0)
                 {
-                    GameObject.Instantiate(background_sprites[0], new Vector3(i, j, 0), new Quaternion(0, 0, 0, 0), background_tiles_p.transform);
+                    GameObject.Instantiate(background_sprites[0], new Vector3(i, j, 0), new Quaternion(0, 0, 0, 0), ground_tiles_p.transform);
                 }
                 else
                 {
-                    GameObject.Instantiate(background_sprites[1], new Vector3(i, j, 0), new Quaternion(0, 0, 0, 0), background_tiles_p.transform);
+                    GameObject.Instantiate(background_sprites[1], new Vector3(i, j, 0), new Quaternion(0, 0, 0, 0), water_tiles_p.transform);
                 }
             }
         }
         newTile = GameObject.Instantiate(base_tile, new Vector3(size_x / 2, 1, -0.1f), new Quaternion(0, 0, 0, 0), coral_tiles_p.transform);
-        newTile.GetComponent<SpriteRenderer>().sprite = tiles_sprite[4];
+        newTile.GetComponent<SpriteRenderer>().sprite = road_sprite[4];
         board[size_x / 2, 1] = newTile.GetComponent<Tile>();
     }
 
@@ -93,7 +96,7 @@ public class TileManager : MonoBehaviour
 
     Sprite GetTileSprite(int x, int y)
     {
-        return tiles_sprite[CheckAround(x, y)];
+        return road_sprite[CheckAround(x, y)];
     }
 
     int CheckAround(int x, int y)
