@@ -20,7 +20,6 @@ public abstract class Building : MonoBehaviour
     };
 
     [Header("--= Building Attributes =--")]
-    public string S_name;
     public BuildingType ActualBuildingType;
     public GameObject GO_ressourcesManager;
 
@@ -49,6 +48,7 @@ public abstract class Building : MonoBehaviour
 
     protected void Start()
     {
+        GO_ressourcesManager = GameObject.FindWithTag("RessourcesManager");
         TimeDayNightManager.TimePassed += Regen_TimePassed;
     }
 

@@ -14,10 +14,14 @@ public class TileManager : MonoBehaviour
     public Tile[,] board;
     public GameObject base_tile;
 
+    public GameObject GO_ressourcesManager;
+    public List<GameObject> List_tilesBuilding;
+
     private GameObject newTile;
     // Start is called before the first frame update
     void Start()
     {
+        GO_ressourcesManager = GameObject.FindWithTag("RessourcesManager");
         board = new Tile[size_x, size_y];
         CreateMap();
     }
@@ -51,31 +55,32 @@ public class TileManager : MonoBehaviour
 
     public void PlaceTile(float x, float y, Building.BuildingType type)
     {
-        if (type == 0)
+        GameObject go_tileBuilding = List_tilesBuilding[(int)type];
+        if(GO_ressourcesManager.GetComponent<RessourcesManager>().RemoveToStock(go_tileBuilding.GetComponent<Building>().I_creationCost))
         {
-            Sprite sprite;
-            if (sprite = GetTileSprite((int)x, (int)y))
+            if (go_tileBuilding.GetComponent<Tile>().type == Building.BuildingType.Road)
             {
-                newTile = GameObject.Instantiate(base_tile, new Vector3(x, y, -0.1f), new Quaternion(0, 0, 0, 0), coral_tiles_p.transform);
-                newTile.GetComponent<Tile>().CreateBuilding(type);
-                newTile.GetComponent<SpriteRenderer>().sprite = sprite;
-                board[(int)x, (int)y] = newTile.GetComponent<Tile>();
-                UpdateTiles();
+                Sprite sprite;
+                if (sprite = GetTileSprite((int)x, (int)y))
+                {
+                    newTile = GameObject.Instantiate(go_tileBuilding, new Vector3(x, y, -0.1f), new Quaternion(0, 0, 0, 0), coral_tiles_p.transform);
+                    newTile.GetComponent<SpriteRenderer>().sprite = sprite;
+                    board[(int)x, (int)y] = newTile.GetComponent<Tile>();
+                    UpdateTiles();
+                }
+            }
+            else
+            {
+                int around = CheckAround((int)x, (int)y);
+                if (around == 1 || around == 2 || around == 4 || around == 8)
+                {
+                    newTile = GameObject.Instantiate(go_tileBuilding, new Vector3(x, y, -0.1f), new Quaternion(0, 0, 0, 0), coral_tiles_p.transform);
+                    board[(int)x, (int)y] = newTile.GetComponent<Tile>();
+                    UpdateTiles();
+                }
             }
         }
-        else
-        {
-            int around = CheckAround((int)x, (int)y);
 
-            if (around == 1 || around == 2 || around == 4 || around == 8)
-            {
-                newTile = GameObject.Instantiate(base_tile, new Vector3(x, y, -0.1f), new Quaternion(0, 0, 0, 0), coral_tiles_p.transform);
-                newTile.GetComponent<Tile>().CreateBuilding(type);
-                newTile.GetComponent<SpriteRenderer>().sprite = building_sprites[(int)type];
-                board[(int)x, (int)y] = newTile.GetComponent<Tile>();
-                UpdateTiles();
-            }
-        }
     }
 
     private void UpdateTiles()
