@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    public Building.BuildingType type;
+    public Building.BuildingType? type = null;
     // Start is called before the first frame update
     void Start()
     {}

@@ -52,10 +52,12 @@ public class TileManager : MonoBehaviour
 
     public void PlaceTile(float x, float y, Building.BuildingType type)
     {
+        Debug.Log((int)type);
         GameObject go_tileBuilding = List_tilesBuilding[(int)type];
-        if(GO_ressourcesManager.GetComponent<RessourcesManager>().RemoveToStock(go_tileBuilding.GetComponent<Building>().I_creationCost))
+
+        if (GO_ressourcesManager.GetComponent<RessourcesManager>().RemoveToStock(go_tileBuilding.GetComponent<Building>().I_creationCost))
         {
-            if (go_tileBuilding.GetComponent<Tile>().type == Building.BuildingType.Road)
+            if (go_tileBuilding.GetComponent<Building>().ActualBuildingType == Building.BuildingType.Road)
             {
                 Sprite sprite;
                 if (sprite = GetTileSprite((int)x, (int)y))

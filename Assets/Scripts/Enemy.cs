@@ -48,6 +48,11 @@ public class Enemy : MonoBehaviour
 
         if (x != 0 && getBoard[x - 1, y] != null)
         {
+            if(getBoard[x - 1, y].type != null)
+            {
+                // getBoard[x - 1, y].GetComponent<Building>().I_creationCost = 500;
+            }
+
             result += 8;
         }
         if (x != getSizeX - 1 && getBoard[x + 1, y] != null)
