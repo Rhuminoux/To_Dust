@@ -1146,7 +1146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GO_TMP_ressource: {fileID: 149618009}
-  I_currentStock: 100
+  I_currentStock: 250
   I_maxStock: 1000
 --- !u!1 &1752620098
 GameObject:
@@ -1354,6 +1354,12 @@ MonoBehaviour:
   background_tiles_p: {fileID: 868676969}
   coral_tiles_p: {fileID: 1301825779}
   base_tile: {fileID: 4626028119317115056, guid: a93bab8b77e512d41af456475facf6cb, type: 3}
+  GO_ressourcesManager: {fileID: 0}
+  List_tilesBuilding:
+  - {fileID: 7403275823237853949, guid: 34a0b4cd43d9cb44f9d2f9213fd8822b, type: 3}
+  - {fileID: 1355816287976173534, guid: cc58669f9baa9f543942478c7c32469e, type: 3}
+  - {fileID: 1355816287976173534, guid: cc58669f9baa9f543942478c7c32469e, type: 3}
+  - {fileID: 820217041977305731, guid: b2821d1aa82bf984a8ea3a039721afae, type: 3}
 --- !u!4 &1871887005
 Transform:
   m_ObjectHideFlags: 0

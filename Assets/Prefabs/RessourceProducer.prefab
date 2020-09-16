@@ -142,8 +142,16 @@ MonoBehaviour:
   I_maxLife: 200
   I_regenPoint: 1
   I_creationCost: 50
-  I_Level: 1
+  I_level: 1
+  I_upgradeCostL2: 50
+  I_upgradeCostL3: 100
+  I_maxLifeL2: 150
+  I_maxLifeL3: 150
+  I_regenPointL2: 2
+  I_regenPointL3: 3
   I_maxLevel: 3
   I_sizeX: 1
   I_sizeZ: 1
   I_ressource: 5
+  I_ressourceL2: 2
+  I_ressourceL3: 3
