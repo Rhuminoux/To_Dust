@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        tile_manager = GameObject.FindWithTag("TileManager").GetComponent<TileManager>();
     }
 
     // Update is called once per frame

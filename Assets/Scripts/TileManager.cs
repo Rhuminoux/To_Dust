@@ -52,20 +52,15 @@ public class TileManager : MonoBehaviour
 
     public void PlaceTile(float x, float y, Building.BuildingType type)
     {
-        Debug.Log((int)type);
         GameObject go_tileBuilding = List_tilesBuilding[(int)type];
 
         if (GO_ressourcesManager.GetComponent<RessourcesManager>().RemoveToStock(go_tileBuilding.GetComponent<Building>().I_creationCost))
         {
             if (go_tileBuilding.GetComponent<Building>().ActualBuildingType == Building.BuildingType.Road)
             {
-                Sprite sprite;
-                if (sprite = GetTileSprite((int)x, (int)y))
+                if (GetTileSprite((int)x, (int)y))
                 {
                     newTile = GameObject.Instantiate(go_tileBuilding, new Vector3(x, y, -0.1f), new Quaternion(0, 0, 0, 0), coral_tiles_p.transform);
-                    newTile.GetComponent<SpriteRenderer>().sprite = sprite;
-                    board[(int)x, (int)y] = newTile.GetComponent<Tile>();
-                    UpdateTiles();
                 }
             }
             else
@@ -74,10 +69,11 @@ public class TileManager : MonoBehaviour
                 if (around == 1 || around == 2 || around == 4 || around == 8)
                 {
                     newTile = GameObject.Instantiate(go_tileBuilding, new Vector3(x, y, -0.1f), new Quaternion(0, 0, 0, 0), coral_tiles_p.transform);
-                    board[(int)x, (int)y] = newTile.GetComponent<Tile>();
-                    UpdateTiles();
                 }
             }
+            board[(int)x, (int)y] = newTile.GetComponent<Tile>();
+            board[(int)x, (int)y].type = newTile.GetComponent<Building>().ActualBuildingType;
+            UpdateTiles();
         }
 
     }

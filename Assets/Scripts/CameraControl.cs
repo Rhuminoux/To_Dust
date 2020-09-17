@@ -9,6 +9,7 @@ public class CameraControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        tile_manager = GameObject.FindWithTag("TileManager");
         transform.position = new Vector3(tile_manager.GetComponent<TileManager>().size_x / 2, tile_manager.GetComponent<TileManager>().size_y / 2, -10);    
     }
 
