@@ -15,7 +15,7 @@ public class RessourceProducer : Building
     new void Start()
     {
         base.Start();
-        ActualBuildingType = BuildingType.RessourcesProducer;
+        ActualBuildingType = Type.RessourcesProducer;
         TimeDayNightManager.TimePassed += AddRessourcesToStock_TimePassed;
     }
 

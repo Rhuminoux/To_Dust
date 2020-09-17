@@ -6,8 +6,9 @@ using UnityEngine;
 
 public abstract class Building : MonoBehaviour
 {
-    public enum BuildingType
+    public enum Type
     {
+        Empty = -1,
         Road = 0,
         RessourceTank = 1,
         RessourcesProducer = 2,
@@ -21,8 +22,14 @@ public abstract class Building : MonoBehaviour
     };
 
     [Header("--= Building Attributes =--")]
-    public BuildingType ActualBuildingType;
+    public Type ActualBuildingType;
     public GameObject GO_ressourcesManager;
+
+    [Header("Board Settings")]
+    public GameObject GO_tileManager;
+    public Tile[,] getBoard { get => GO_tileManager.GetComponent<TileManager>().board; }
+    public int getSizeX { get => GO_tileManager.GetComponent<TileManager>().size_x; }
+    public int getSizeY { get => GO_tileManager.GetComponent<TileManager>().size_y; }
 
     [Header("Health Settings")]
     public int I_currentLife = 100;
@@ -52,9 +59,14 @@ public abstract class Building : MonoBehaviour
     public int I_sizeX = 1;
     public int I_sizeZ = 1;
 
-    protected void Start()
+    private void Awake()
     {
         GO_ressourcesManager = GameObject.FindWithTag("RessourcesManager");
+        GO_tileManager = GameObject.FindWithTag("TileManager");
+    }
+
+    protected void Start()
+    {  
         TimeDayNightManager.TimePassed += Regen_TimePassed;
     }
 
@@ -70,6 +82,36 @@ public abstract class Building : MonoBehaviour
         {
             Destroy(this.GetComponent<GameObject>());
         }
+    }
+
+    public int CountNumberOfBuildingAround()
+    {
+        int x = this.GetComponent<Tile>().I_x;
+        int y = this.GetComponent<Tile>().I_y;
+        int countBuildings = 0;
+
+        if (x != 0 && getBoard[x - 1, y] != null && 
+            getBoard[x - 1, y].B_type != Type.Empty && getBoard[x - 1, y].B_type != Type.Road)
+        {
+            countBuildings++;
+        }
+        if (x != getSizeX - 1 && getBoard[x + 1, y] != null && 
+            getBoard[x + 1, y].B_type != Type.Empty && getBoard[x + 1, y].B_type != Type.Road)
+        {
+            countBuildings++;
+        }
+        if (y != getSizeY - 1 && getBoard[x, y + 1] != null && 
+            getBoard[x, y + 1].B_type != Type.Empty && getBoard[x, y + 1].B_type != Type.Road)
+        {
+            countBuildings++;
+        }
+        if (y != 0 && getBoard[x, y - 1] != null && 
+            getBoard[x, y - 1].B_type != Type.Empty && getBoard[x, y - 1].B_type != Type.Road)
+        {
+            countBuildings++;
+        }
+        Debug.Log("cb : " + countBuildings);
+        return countBuildings;
     }
 
     public bool UprageCurrentBuilding()

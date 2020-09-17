@@ -8,7 +8,7 @@ public class Road : Building
     new void Start()
     {
         base.Start();
-        ActualBuildingType = BuildingType.Road;
+        ActualBuildingType = Type.Road;
     }
 
     public override void EvolveStatsCurrentBuilding(int level)

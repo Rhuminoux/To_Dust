@@ -18,7 +18,7 @@ public class OffensiveInstallation : Building
     new void Start()
     {
         base.Start();
-        ActualBuildingType = BuildingType.OffensiveInstallation;
+        ActualBuildingType = Type.OffensiveInstallation;
     }
 
     public void Attack(GameObject enemy)

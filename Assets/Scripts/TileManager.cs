@@ -50,17 +50,21 @@ public class TileManager : MonoBehaviour
         board[size_x / 2, 1] = newTile.GetComponent<Tile>();
     }
 
-    public void PlaceTile(float x, float y, Building.BuildingType type)
+    public void PlaceTile(float x, float y, Building.Type type)
     {
         GameObject go_tileBuilding = List_tilesBuilding[(int)type];
 
         if (GO_ressourcesManager.GetComponent<RessourcesManager>().RemoveToStock(go_tileBuilding.GetComponent<Building>().I_creationCost))
         {
-            if (go_tileBuilding.GetComponent<Building>().ActualBuildingType == Building.BuildingType.Road)
+            if (go_tileBuilding.GetComponent<Building>().ActualBuildingType == Building.Type.Road)
             {
                 if (GetTileSprite((int)x, (int)y))
                 {
                     newTile = GameObject.Instantiate(go_tileBuilding, new Vector3(x, y, -0.1f), new Quaternion(0, 0, 0, 0), coral_tiles_p.transform);
+                    newTile.GetComponent<Tile>().SetPosition((int)x, (int)y);
+                    board[(int)x, (int)y] = newTile.GetComponent<Tile>();
+
+                    UpdateTiles();
                 }
             }
             else
@@ -69,11 +73,12 @@ public class TileManager : MonoBehaviour
                 if (around == 1 || around == 2 || around == 4 || around == 8)
                 {
                     newTile = GameObject.Instantiate(go_tileBuilding, new Vector3(x, y, -0.1f), new Quaternion(0, 0, 0, 0), coral_tiles_p.transform);
+                    newTile.GetComponent<Tile>().SetPosition((int)x, (int)y);
+                    board[(int)x, (int)y] = newTile.GetComponent<Tile>();
+
+                    UpdateTiles();
                 }
             }
-            board[(int)x, (int)y] = newTile.GetComponent<Tile>();
-            board[(int)x, (int)y].type = newTile.GetComponent<Building>().ActualBuildingType;
-            UpdateTiles();
         }
 
     }
@@ -82,7 +87,7 @@ public class TileManager : MonoBehaviour
     {
         for (int i = 0; i < size_x; ++i)
             for (int j = 0; j < size_y; ++j)
-                if (board[i, j] != null && board[i, j].type == 0)
+                if (board[i, j] != null && board[i, j].B_type == 0)
                     board[i, j].gameObject.GetComponent<SpriteRenderer>().sprite = GetTileSprite(i, j);
     }
 

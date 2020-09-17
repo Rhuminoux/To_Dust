@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TileShadow : MonoBehaviour
 {
-    public Building.BuildingType type;
+    public Building.Type type;
     // Start is called before the first frame update
     void Start()
     {

@@ -14,7 +14,7 @@ public class RessourceTank : Building
     new void Start()
     {
         base.Start();
-        ActualBuildingType = BuildingType.RessourceTank;
+        ActualBuildingType = Type.RessourceTank;
         GO_ressourcesManager.GetComponent<RessourcesManager>().AddLimitStock(I_ressourceTank);
     }
 
