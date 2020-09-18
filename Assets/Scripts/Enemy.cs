@@ -37,37 +37,94 @@ public class Enemy : MonoBehaviour
     public int I_sizeX = 1;
     public int I_sizeZ = 1;
 
-    void Start()
+    private void Awake()
     {
         GO_tileManager = GameObject.FindWithTag("TileManager");
     }
 
-    int CheckEnvironementAround(int x, int y)
+    void Start()
     {
-        int result = 0;
+        GO_tileManager = GameObject.FindWithTag("TileManager");
 
-        if (x != 0 && getBoard[x - 1, y] != null)
-        {
-            result += 8;
-        }
-        if (x != getSizeX - 1 && getBoard[x + 1, y] != null)
-        {
-            result += 2;
-        }
-        if (y != getSizeY - 1 && getBoard[x, y + 1] != null)
-        {
-            result += 1;
-        }
-        if (y != 0 && getBoard[x, y - 1] != null)
-        {
-            result += 4;
-        }
-        return result;
+        Tile tile = FindPromximaTile();
+        
+        Debug.Log(tile.B_type + " x : "  + tile.I_x + " y : " + tile.I_y);
     }
 
-    public void Attack(GameObject building)
+    public Tile FindPromximaTile()
     {
-        building.GetComponent<Building>().TakeDamage(I_firePower);
+        Tile tile = null;
+
+        for(int y = this.GetComponent<Tile>().I_y; y > 0; y--)
+        {
+            tile = FindBuildingInX(y);
+        }
+
+        return tile;
+    }
+
+    public Tile FindBuildingInX(int y)
+    {
+        Tile tile = null;
+        int myX = this.GetComponent<Tile>().I_x;
+
+        int borderX = myX >= (int)getSizeX / 2 ? getSizeX : 0;
+        
+        if(borderX == getSizeX)
+        {
+
+            int x = getSizeX;
+            while(tile == null && x > 0)
+            {
+                x--;
+                Debug.Log("x : " + x + "y : " + y);
+                if (x != 0 && y != 0 && getBoard[x, y] != null && getBoard[x, y].B_type != Building.Type.Empty)
+                    tile = getBoard[x, y];
+            }
+        }
+        else
+        {
+            int x = 0;
+            while (tile == null && x > getSizeX)
+            {
+                x++;
+                if (x != 0 && y != 0 && getBoard[x, y] != null && getBoard[x, y].B_type != Building.Type.Empty)
+                    tile = getBoard[x, y];
+            }
+        }
+
+        return tile;
+    }
+
+    public Tile GetTileWithBuilding()
+    {
+        int x = this.GetComponent<Tile>().I_x;
+        int y = this.GetComponent<Tile>().I_y;
+        
+        Tile tile = null;
+
+        if (x != 0 && getBoard[x - 1, y] != null && getBoard[x - 1, y].B_type != Building.Type.Empty)
+        {
+            tile = getBoard[x - 1, y];
+        }
+        else if (x != getSizeX - 1 && getBoard[x + 1, y] != null && getBoard[x + 1, y].B_type != Building.Type.Empty)
+        {
+            tile = getBoard[x + 1, y];
+        }
+        else if (y != getSizeY - 1 && getBoard[x, y + 1] != null && getBoard[x, y + 1].B_type != Building.Type.Empty)
+        {
+            tile = getBoard[x, y + 1];
+        }
+        else if (y != 0 && getBoard[x, y - 1] != null && getBoard[x, y - 1].B_type != Building.Type.Empty)
+        {
+            tile = getBoard[x, y - 1];
+        }
+        return tile;
+    }
+
+    public void Attack(Building building)
+    {
+        building.TakeDamage(I_firePower);
     }
 
     public void TakeDamage(int I_Damage)

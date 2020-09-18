@@ -21,9 +21,9 @@ public class OffensiveInstallation : Building
         ActualBuildingType = Type.OffensiveInstallation;
     }
 
-    public void Attack(GameObject enemy)
+    public void Attack(Enemy enemy)
     {
-        enemy.GetComponent<Enemy>().TakeDamage(I_firePower);
+        enemy.TakeDamage(I_firePower);
     }
 
     public override void EvolveStatsCurrentBuilding(int level)

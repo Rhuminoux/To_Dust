@@ -47,6 +47,7 @@ public class TileManager : MonoBehaviour
         }
         newTile = GameObject.Instantiate(base_tile, new Vector3(size_x / 2, 1, -0.1f), new Quaternion(0, 0, 0, 0), coral_tiles_p.transform);
         newTile.GetComponent<SpriteRenderer>().sprite = road_sprite[4];
+        newTile.GetComponent<Tile>().SetPosition(size_x / 2, 1);
         board[size_x / 2, 1] = newTile.GetComponent<Tile>();
     }
 
