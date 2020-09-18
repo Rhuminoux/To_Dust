@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
     public int getSizeY { get => GO_tileManager.GetComponent<TileManager>().size_y; }
 
     [Header("Power Settings")]
-    public int I_firePower = 1;
+    public int I_firePower = 5;
     public float F_fireRate = 1;
 
     [Header("Size Settings")]
@@ -46,20 +46,67 @@ public class Enemy : MonoBehaviour
     {
         GO_tileManager = GameObject.FindWithTag("TileManager");
 
-        Tile tile = FindPromximaTile();
-        
-        Debug.Log(tile.B_type + " x : "  + tile.I_x + " y : " + tile.I_y);
+        Tile tile = GetTileWithBuilding();
+        if(tile == null)
+        {
+            tile = FindPromximaTile();
+            MoveToTileDirection(tile);
+        }
+        else
+        {
+            Attack(tile.GetComponent<Building>());
+        }
+    }
+
+    public void MoveToTileDirection(Tile tile)
+    {
+        int i_currentX = this.GetComponent<Tile>().I_x;
+        int i_currentY = this.GetComponent<Tile>().I_y;
+
+        int diffX = System.Math.Abs(i_currentX - tile.I_x);
+        int diffY = System.Math.Abs(i_currentY - tile.I_y) * 2;
+
+        if ((diffY == 0 && diffX > diffY)  ||  (diffX != 0 && diffX < diffY))
+        {
+            this.GetComponent<Tile>().I_x = GetNextValueFromToStep1(i_currentX, tile.I_x);
+        }
+        else
+        {
+            this.GetComponent<Tile>().I_y = GetNextValueFromToStep1(i_currentY, tile.I_y);
+        }
+        getBoard[i_currentX, i_currentY] = null;
+        getBoard[this.GetComponent<Tile>().I_x, this.GetComponent<Tile>().I_y] = this.GetComponent<Tile>();
+
+        Vector3 v3_newPosition = new Vector3((float)this.GetComponent<Tile>().I_x, (float)this.GetComponent<Tile>().I_y, 0);
+        this.gameObject.transform.position = v3_newPosition; 
     }
 
     public Tile FindPromximaTile()
     {
         Tile tile = null;
 
-        for(int y = this.GetComponent<Tile>().I_y; y > 0; y--)
-        {
-            tile = FindBuildingInX(y);
-        }
+        tile = FindBuildingInX(this.GetComponent<Tile>().I_y);
 
+        if (tile == null)
+        {
+            int yToBottom = this.GetComponent<Tile>().I_y - 1;
+            int yToTop = this.GetComponent<Tile>().I_y + 1;
+
+            while (tile == null)
+            {
+                if (yToBottom > 0)
+                {
+                    tile = FindBuildingInX(yToBottom);
+                    yToBottom--;
+                }
+
+                if (tile == null && yToTop < 10)
+                {
+                    tile = FindBuildingInX(yToTop);
+                    yToTop++;
+                }
+            }
+        }
         return tile;
     }
 
@@ -77,7 +124,6 @@ public class Enemy : MonoBehaviour
             while(tile == null && x > 0)
             {
                 x--;
-                Debug.Log("x : " + x + "y : " + y);
                 if (x != 0 && y != 0 && getBoard[x, y] != null && getBoard[x, y].B_type != Building.Type.Empty)
                     tile = getBoard[x, y];
             }
@@ -122,6 +168,18 @@ public class Enemy : MonoBehaviour
         return tile;
     }
 
+    public int GetNextValueFromToStep1(int from, int to)
+    {
+        if(from > to)
+        {
+            from--;
+        }
+        else if(from < to)
+        {
+            from++;
+        }
+        return from;
+    }
     public void Attack(Building building)
     {
         building.TakeDamage(I_firePower);

@@ -72,10 +72,17 @@ public abstract class Building : MonoBehaviour
 
     public void TakeDamage(int I_Damage)
     {
+        Debug.Log("vie actuel " + I_currentLife);
         I_currentLife -= I_Damage;
-        
+        Debug.Log("vie après dégat " + I_currentLife);
+
+        Debug.Log("I_currentLife : " + I_currentLife);
+        Debug.Log("I_maxLife : " + I_maxLife);
         float f_ratio = I_currentLife / I_maxLife;
+        Debug.Log("f_ratio : " + f_ratio);
         float f_colorValue = 255 * f_ratio; // Risque d'être tout noir, à tester.
+        Debug.Log("ColorValue : " + f_colorValue);
+
         this.GetComponent<SpriteRenderer>().color = new Color(f_colorValue, f_colorValue, f_colorValue); 
         
         if(ActualLifeStatus == LifeStatus.Dead)
