@@ -70,15 +70,15 @@ public abstract class Building : MonoBehaviour
         TimeDayNightManager.TimePassed += Regen_TimePassed;
     }
 
-    public void TakeDamage(int I_Damage)
+    public void TakeDamage(int i_damage)
     {
         Debug.Log("vie actuel " + I_currentLife);
-        I_currentLife -= I_Damage;
+        I_currentLife -= i_damage;
         Debug.Log("vie après dégat " + I_currentLife);
 
         Debug.Log("I_currentLife : " + I_currentLife);
         Debug.Log("I_maxLife : " + I_maxLife);
-        float f_ratio = I_currentLife / I_maxLife;
+        float f_ratio = (float)I_currentLife / (float)I_maxLife;
         Debug.Log("f_ratio : " + f_ratio);
         float f_colorValue = 255 * f_ratio; // Risque d'être tout noir, à tester.
         Debug.Log("ColorValue : " + f_colorValue);
