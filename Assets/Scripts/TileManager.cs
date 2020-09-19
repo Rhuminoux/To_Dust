@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static EnumGame;
 
 public class TileManager : MonoBehaviour
 {
@@ -51,13 +52,13 @@ public class TileManager : MonoBehaviour
         board[size_x / 2, 1] = newTile.GetComponent<Tile>();
     }
 
-    public void PlaceTile(float x, float y, Building.Type type)
+    public void PlaceTile(float x, float y, TypeEnvironement type)
     {
         GameObject go_tileBuilding = List_tilesBuilding[(int)type];
 
         if (GO_ressourcesManager.GetComponent<RessourcesManager>().RemoveToStock(go_tileBuilding.GetComponent<Building>().I_creationCost))
         {
-            if (go_tileBuilding.GetComponent<Building>().ActualBuildingType == Building.Type.Road)
+            if (go_tileBuilding.GetComponent<Building>().ActualBuildingType == TypeEnvironement.Road)
             {
                 if (GetTileSprite((int)x, (int)y))
                 {

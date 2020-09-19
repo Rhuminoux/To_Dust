@@ -1,16 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static EnumGame;
 
 public class Enemy : MonoBehaviour
 {
-    public enum LifeStatus
-    {
-        GoodShape = 1,
-        BadShape = 2,
-        Dead = 3
-    };
-
     [Header("Life Settings")]
     [Header("--= Enemy Attributes =--")]
     public int I_currentLife = 15;
@@ -128,7 +123,7 @@ public class Enemy : MonoBehaviour
             while(tile == null && i_x > 0)
             {
                 i_x--;
-                if (i_x != 0 && i_y != 0 && getBoard[i_x, i_y] != null && getBoard[i_x, i_y].B_type != Building.Type.Empty)
+                if (i_x != 0 && i_y != 0 && getBoard[i_x, i_y] != null && getBoard[i_x, i_y].B_type !=TypeEnvironement.Empty)
                     tile = getBoard[i_x, i_y];
             }
         }
@@ -138,7 +133,7 @@ public class Enemy : MonoBehaviour
             while (tile == null && i_x > getSizeX)
             {
                 i_x++;
-                if (i_x != 0 && i_y != 0 && getBoard[i_x, i_y] != null && getBoard[i_x, i_y].B_type != Building.Type.Empty)
+                if (i_x != 0 && i_y != 0 && getBoard[i_x, i_y] != null && getBoard[i_x, i_y].B_type != TypeEnvironement.Empty)
                     tile = getBoard[i_x, i_y];
             }
         }
@@ -153,19 +148,19 @@ public class Enemy : MonoBehaviour
         
         Tile tile = null;
 
-        if (i_x != 0 && getBoard[i_x - 1, i_y] != null && getBoard[i_x - 1, i_y].B_type != Building.Type.Empty)
+        if (i_x != 0 && getBoard[i_x - 1, i_y] != null && getBoard[i_x - 1, i_y].B_type != TypeEnvironement.Empty)
         {
             tile = getBoard[i_x - 1, i_y];
         }
-        else if (i_x != getSizeX - 1 && getBoard[i_x + 1, i_y] != null && getBoard[i_x + 1, i_y].B_type != Building.Type.Empty)
+        else if (i_x != getSizeX - 1 && getBoard[i_x + 1, i_y] != null && getBoard[i_x + 1, i_y].B_type != TypeEnvironement.Empty)
         {
             tile = getBoard[i_x + 1, i_y];
         }
-        else if (i_y != getSizeY - 1 && getBoard[i_x, i_y + 1] != null && getBoard[i_x, i_y + 1].B_type != Building.Type.Empty)
+        else if (i_y != getSizeY - 1 && getBoard[i_x, i_y + 1] != null && getBoard[i_x, i_y + 1].B_type != TypeEnvironement.Empty)
         {
             tile = getBoard[i_x, i_y + 1];
         }
-        else if (i_y != 0 && getBoard[i_x, i_y - 1] != null && getBoard[i_x, i_y - 1].B_type != Building.Type.Empty)
+        else if (i_y != 0 && getBoard[i_x, i_y - 1] != null && getBoard[i_x, i_y - 1].B_type != TypeEnvironement.Empty)
         {
             tile = getBoard[i_x, i_y - 1];
         }

@@ -3,26 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
+using static EnumGame;
 
 public abstract class Building : MonoBehaviour
 {
-    public enum Type
-    {
-        Empty = -1,
-        Road = 0,
-        RessourceTank = 1,
-        RessourcesProducer = 2,
-        OffensiveInstallation = 3
-    }
-    public enum LifeStatus 
-    { 
-        GoodShape = 1, 
-        BadShape = 2, 
-        Dead = 3 
-    };
 
     [Header("--= Building Attributes =--")]
-    public Type ActualBuildingType;
+    public TypeEnvironement ActualBuildingType;
     public GameObject GO_ressourcesManager;
 
     [Header("Board Settings")]
@@ -98,22 +85,22 @@ public abstract class Building : MonoBehaviour
         int countBuildings = 0;
 
         if (x != 0 && getBoard[x - 1, y] != null && 
-            getBoard[x - 1, y].B_type != Type.Empty && getBoard[x - 1, y].B_type != Type.Road)
+            getBoard[x - 1, y].B_type != TypeEnvironement.Empty && getBoard[x - 1, y].B_type != TypeEnvironement.Road)
         {
             countBuildings++;
         }
         if (x != getSizeX - 1 && getBoard[x + 1, y] != null && 
-            getBoard[x + 1, y].B_type != Type.Empty && getBoard[x + 1, y].B_type != Type.Road)
+            getBoard[x + 1, y].B_type != TypeEnvironement.Empty && getBoard[x + 1, y].B_type != TypeEnvironement.Road)
         {
             countBuildings++;
         }
         if (y != getSizeY - 1 && getBoard[x, y + 1] != null && 
-            getBoard[x, y + 1].B_type != Type.Empty && getBoard[x, y + 1].B_type != Type.Road)
+            getBoard[x, y + 1].B_type != TypeEnvironement.Empty && getBoard[x, y + 1].B_type != TypeEnvironement.Road)
         {
             countBuildings++;
         }
         if (y != 0 && getBoard[x, y - 1] != null && 
-            getBoard[x, y - 1].B_type != Type.Empty && getBoard[x, y - 1].B_type != Type.Road)
+            getBoard[x, y - 1].B_type != TypeEnvironement.Empty && getBoard[x, y - 1].B_type != TypeEnvironement.Road)
         {
             countBuildings++;
         }

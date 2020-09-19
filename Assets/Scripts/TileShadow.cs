@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static EnumGame;
 
 public class TileShadow : MonoBehaviour
 {
-    public Building.Type type;
+    public TypeEnvironement type;
     // Start is called before the first frame update
     void Start()
     {

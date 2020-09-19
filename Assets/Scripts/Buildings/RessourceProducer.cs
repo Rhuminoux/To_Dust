@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static EnumGame;
 
 public class RessourceProducer : Building
 {
@@ -15,7 +16,7 @@ public class RessourceProducer : Building
     new void Start()
     {
         base.Start();
-        ActualBuildingType = Type.RessourcesProducer;
+        ActualBuildingType = TypeEnvironement.RessourcesProducer;
         TimeDayNightManager.TimePassed += AddRessourcesToStock_TimePassed;
     }
 

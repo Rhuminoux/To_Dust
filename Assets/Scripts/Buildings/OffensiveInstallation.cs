@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static EnumGame;
 
 public class OffensiveInstallation : Building
 {
@@ -18,7 +19,7 @@ public class OffensiveInstallation : Building
     new void Start()
     {
         base.Start();
-        ActualBuildingType = Type.OffensiveInstallation;
+        ActualBuildingType = TypeEnvironement.OffensiveInstallation;
     }
 
     public void Attack(Enemy enemy)

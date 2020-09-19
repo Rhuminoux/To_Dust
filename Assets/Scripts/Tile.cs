@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static EnumGame;
 
 public class Tile : MonoBehaviour
 {
-    public Building.Type B_type = Building.Type.Empty;
+    public TypeEnvironement B_type = TypeEnvironement.Empty;
     public int I_x;
     public int I_y;
 

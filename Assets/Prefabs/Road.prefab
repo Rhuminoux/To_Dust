@@ -97,7 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573731145df09fd42a5e69c5d31cbd72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  B_type: 0
+  I_x: 0
+  I_y: 0
 --- !u!61 &9003122885578544156
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -138,11 +140,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActualBuildingType: 0
   GO_ressourcesManager: {fileID: 0}
+  GO_tileManager: {fileID: 0}
   I_currentLife: 100
   I_maxLife: 100
   I_regenPoint: 1
   I_creationCost: 10
-  I_Level: 1
+  I_level: 1
+  I_upgradeCostL2: 50
+  I_upgradeCostL3: 100
+  I_maxLifeL2: 150
+  I_maxLifeL3: 150
+  I_regenPointL2: 2
+  I_regenPointL3: 3
   I_maxLevel: 3
   I_sizeX: 1
   I_sizeZ: 1
