@@ -24,7 +24,7 @@ public abstract class Building : MonoBehaviour
     public int I_regenPoint = 1;
     public LifeStatus ActualLifeStatus
     {
-        get => I_currentLife >= (I_maxLife / 2) ? LifeStatus.GoodShape :
+        get => I_currentLife == I_maxLife ? LifeStatus.GoodShape :
                I_currentLife > 0 ? LifeStatus.BadShape :
                LifeStatus.Dead;
     }
@@ -70,11 +70,17 @@ public abstract class Building : MonoBehaviour
         float f_colorValue = 255 * f_ratio; // Risque d'être tout noir, à tester.
         Debug.Log("ColorValue : " + f_colorValue);
 
-        this.GetComponent<SpriteRenderer>().color = new Color(f_colorValue, f_colorValue, f_colorValue); 
-        
-        if(ActualLifeStatus == LifeStatus.Dead)
+        this.GetComponent<SpriteRenderer>().color = new Color(f_colorValue, f_colorValue, f_colorValue);
+
+        Die();
+    }
+
+    public virtual void Die()
+    {
+        if (ActualLifeStatus == LifeStatus.Dead)
         {
-            Destroy(this.GetComponent<GameObject>());
+            TimeDayNightManager.TimePassed -= Regen_TimePassed;
+            Destroy(this.gameObject);
         }
     }
 
@@ -131,11 +137,6 @@ public abstract class Building : MonoBehaviour
         {
             I_currentLife += I_regenPoint;
             I_currentLife = I_currentLife > I_maxLife ? I_maxLife : I_currentLife;
-        }
-
-        if (ActualLifeStatus == LifeStatus.GoodShape)
-        {
-            this.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
         }
     }
 
