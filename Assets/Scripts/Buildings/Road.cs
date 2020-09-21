@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static EnumGame;
 
 public class Road : Building
 {
@@ -8,7 +9,7 @@ public class Road : Building
     new void Start()
     {
         base.Start();
-        ActualBuildingType = Type.Road;
+        ActualBuildingType = TypeEnvironement.Road;
     }
 
     public override void EvolveStatsCurrentBuilding(int level)

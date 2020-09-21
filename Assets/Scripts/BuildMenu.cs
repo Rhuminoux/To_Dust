@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static EnumGame;
 
 public class BuildMenu : MonoBehaviour
 {
     public Sprite sprite;
-    public Building.Type type;
+    public TypeEnvironement type;
 }

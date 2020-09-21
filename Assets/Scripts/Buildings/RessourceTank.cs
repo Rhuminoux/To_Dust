@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static EnumGame;
 
 public class RessourceTank : Building
 {
@@ -14,7 +15,7 @@ public class RessourceTank : Building
     new void Start()
     {
         base.Start();
-        ActualBuildingType = Type.RessourceTank;
+        ActualBuildingType = TypeEnvironement.RessourceTank;
         GO_ressourcesManager.GetComponent<RessourcesManager>().AddLimitStock(I_ressourceTank);
     }
 

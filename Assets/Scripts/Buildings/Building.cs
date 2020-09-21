@@ -3,26 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
+using static EnumGame;
 
 public abstract class Building : MonoBehaviour
 {
-    public enum Type
-    {
-        Empty = -1,
-        Road = 0,
-        RessourceTank = 1,
-        RessourcesProducer = 2,
-        OffensiveInstallation = 3
-    }
-    public enum LifeStatus 
-    { 
-        GoodShape = 1, 
-        BadShape = 2, 
-        Dead = 3 
-    };
 
     [Header("--= Building Attributes =--")]
-    public Type ActualBuildingType;
+    public TypeEnvironement ActualBuildingType;
     public GameObject GO_ressourcesManager;
 
     [Header("Board Settings")]
@@ -37,7 +24,7 @@ public abstract class Building : MonoBehaviour
     public int I_regenPoint = 1;
     public LifeStatus ActualLifeStatus
     {
-        get => I_currentLife >= (I_maxLife / 2) ? LifeStatus.GoodShape :
+        get => I_currentLife == I_maxLife ? LifeStatus.GoodShape :
                I_currentLife > 0 ? LifeStatus.BadShape :
                LifeStatus.Dead;
     }
@@ -70,24 +57,30 @@ public abstract class Building : MonoBehaviour
         TimeDayNightManager.TimePassed += Regen_TimePassed;
     }
 
-    public void TakeDamage(int I_Damage)
+    public void TakeDamage(int i_damage)
     {
         Debug.Log("vie actuel " + I_currentLife);
-        I_currentLife -= I_Damage;
+        I_currentLife -= i_damage;
         Debug.Log("vie après dégat " + I_currentLife);
 
         Debug.Log("I_currentLife : " + I_currentLife);
         Debug.Log("I_maxLife : " + I_maxLife);
-        float f_ratio = I_currentLife / I_maxLife;
+        float f_ratio = (float)I_currentLife / (float)I_maxLife;
         Debug.Log("f_ratio : " + f_ratio);
         float f_colorValue = 255 * f_ratio; // Risque d'être tout noir, à tester.
         Debug.Log("ColorValue : " + f_colorValue);
 
-        this.GetComponent<SpriteRenderer>().color = new Color(f_colorValue, f_colorValue, f_colorValue); 
-        
-        if(ActualLifeStatus == LifeStatus.Dead)
+        this.GetComponent<SpriteRenderer>().color = new Color(f_colorValue, f_colorValue, f_colorValue);
+
+        Die();
+    }
+
+    public virtual void Die()
+    {
+        if (ActualLifeStatus == LifeStatus.Dead)
         {
-            Destroy(this.GetComponent<GameObject>());
+            TimeDayNightManager.TimePassed -= Regen_TimePassed;
+            Destroy(this.gameObject);
         }
     }
 
@@ -98,22 +91,22 @@ public abstract class Building : MonoBehaviour
         int countBuildings = 0;
 
         if (x != 0 && getBoard[x - 1, y] != null && 
-            getBoard[x - 1, y].B_type != Type.Empty && getBoard[x - 1, y].B_type != Type.Road)
+            getBoard[x - 1, y].B_type != TypeEnvironement.Empty && getBoard[x - 1, y].B_type != TypeEnvironement.Road)
         {
             countBuildings++;
         }
         if (x != getSizeX - 1 && getBoard[x + 1, y] != null && 
-            getBoard[x + 1, y].B_type != Type.Empty && getBoard[x + 1, y].B_type != Type.Road)
+            getBoard[x + 1, y].B_type != TypeEnvironement.Empty && getBoard[x + 1, y].B_type != TypeEnvironement.Road)
         {
             countBuildings++;
         }
         if (y != getSizeY - 1 && getBoard[x, y + 1] != null && 
-            getBoard[x, y + 1].B_type != Type.Empty && getBoard[x, y + 1].B_type != Type.Road)
+            getBoard[x, y + 1].B_type != TypeEnvironement.Empty && getBoard[x, y + 1].B_type != TypeEnvironement.Road)
         {
             countBuildings++;
         }
         if (y != 0 && getBoard[x, y - 1] != null && 
-            getBoard[x, y - 1].B_type != Type.Empty && getBoard[x, y - 1].B_type != Type.Road)
+            getBoard[x, y - 1].B_type != TypeEnvironement.Empty && getBoard[x, y - 1].B_type != TypeEnvironement.Road)
         {
             countBuildings++;
         }
@@ -144,11 +137,6 @@ public abstract class Building : MonoBehaviour
         {
             I_currentLife += I_regenPoint;
             I_currentLife = I_currentLife > I_maxLife ? I_maxLife : I_currentLife;
-        }
-
-        if (ActualLifeStatus == LifeStatus.GoodShape)
-        {
-            this.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
         }
     }
 

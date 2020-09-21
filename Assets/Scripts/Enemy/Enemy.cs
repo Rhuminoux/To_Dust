@@ -1,16 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static EnumGame;
 
 public class Enemy : MonoBehaviour
 {
-    public enum LifeStatus
-    {
-        GoodShape = 1,
-        BadShape = 2,
-        Dead = 3
-    };
-
     [Header("Life Settings")]
     [Header("--= Enemy Attributes =--")]
     public int I_currentLife = 15;
@@ -45,9 +40,13 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         GO_tileManager = GameObject.FindWithTag("TileManager");
+        TimeDayNightManager.TimePassed += EnemyBehaviour_TimePassed;
+    }
 
+    public void EnemyBehaviour_TimePassed(EventArgs e)
+    {
         Tile tile = GetTileWithBuilding();
-        if(tile == null)
+        if (tile == null)
         {
             tile = FindPromximaTile();
             MoveToTileDirection(tile);
@@ -63,10 +62,10 @@ public class Enemy : MonoBehaviour
         int i_currentX = this.GetComponent<Tile>().I_x;
         int i_currentY = this.GetComponent<Tile>().I_y;
 
-        int diffX = System.Math.Abs(i_currentX - tile.I_x);
-        int diffY = System.Math.Abs(i_currentY - tile.I_y) * 2;
+        int i_diffX = System.Math.Abs(i_currentX - tile.I_x);
+        int i_diffY = System.Math.Abs(i_currentY - tile.I_y) * 2;
 
-        if ((diffY == 0 && diffX > diffY)  ||  (diffX != 0 && diffX < diffY))
+        if ((i_diffY == 0 && i_diffX > i_diffY)  ||  (i_diffX != 0 && i_diffX < i_diffY))
         {
             this.GetComponent<Tile>().I_x = GetNextValueFromToStep1(i_currentX, tile.I_x);
         }
@@ -89,53 +88,53 @@ public class Enemy : MonoBehaviour
 
         if (tile == null)
         {
-            int yToBottom = this.GetComponent<Tile>().I_y - 1;
-            int yToTop = this.GetComponent<Tile>().I_y + 1;
+            int i_yToBottom = this.GetComponent<Tile>().I_y - 1;
+            int i_yToTop = this.GetComponent<Tile>().I_y + 1;
 
             while (tile == null)
             {
-                if (yToBottom > 0)
+                if (i_yToBottom > 0)
                 {
-                    tile = FindBuildingInX(yToBottom);
-                    yToBottom--;
+                    tile = FindBuildingInX(i_yToBottom);
+                    i_yToBottom--;
                 }
 
-                if (tile == null && yToTop < 10)
+                if (tile == null && i_yToTop < 10)
                 {
-                    tile = FindBuildingInX(yToTop);
-                    yToTop++;
+                    tile = FindBuildingInX(i_yToTop);
+                    i_yToTop++;
                 }
             }
         }
         return tile;
     }
 
-    public Tile FindBuildingInX(int y)
+    public Tile FindBuildingInX(int i_y)
     {
         Tile tile = null;
-        int myX = this.GetComponent<Tile>().I_x;
+        int i_myX = this.GetComponent<Tile>().I_x;
 
-        int borderX = myX >= (int)getSizeX / 2 ? getSizeX : 0;
+        int i_borderX = i_myX >= (int)getSizeX / 2 ? getSizeX : 0;
         
-        if(borderX == getSizeX)
+        if(i_borderX == getSizeX)
         {
 
-            int x = getSizeX;
-            while(tile == null && x > 0)
+            int i_x = getSizeX;
+            while(tile == null && i_x > 0)
             {
-                x--;
-                if (x != 0 && y != 0 && getBoard[x, y] != null && getBoard[x, y].B_type != Building.Type.Empty)
-                    tile = getBoard[x, y];
+                i_x--;
+                if (i_x != 0 && i_y != 0 && getBoard[i_x, i_y] != null && getBoard[i_x, i_y].B_type !=TypeEnvironement.Empty)
+                    tile = getBoard[i_x, i_y];
             }
         }
         else
         {
-            int x = 0;
-            while (tile == null && x > getSizeX)
+            int i_x = 0;
+            while (tile == null && i_x > getSizeX)
             {
-                x++;
-                if (x != 0 && y != 0 && getBoard[x, y] != null && getBoard[x, y].B_type != Building.Type.Empty)
-                    tile = getBoard[x, y];
+                i_x++;
+                if (i_x != 0 && i_y != 0 && getBoard[i_x, i_y] != null && getBoard[i_x, i_y].B_type != TypeEnvironement.Empty)
+                    tile = getBoard[i_x, i_y];
             }
         }
 
@@ -144,52 +143,52 @@ public class Enemy : MonoBehaviour
 
     public Tile GetTileWithBuilding()
     {
-        int x = this.GetComponent<Tile>().I_x;
-        int y = this.GetComponent<Tile>().I_y;
+        int i_x = this.GetComponent<Tile>().I_x;
+        int i_y = this.GetComponent<Tile>().I_y;
         
         Tile tile = null;
 
-        if (x != 0 && getBoard[x - 1, y] != null && getBoard[x - 1, y].B_type != Building.Type.Empty)
+        if (i_x != 0 && getBoard[i_x - 1, i_y] != null && getBoard[i_x - 1, i_y].B_type != TypeEnvironement.Empty)
         {
-            tile = getBoard[x - 1, y];
+            tile = getBoard[i_x - 1, i_y];
         }
-        else if (x != getSizeX - 1 && getBoard[x + 1, y] != null && getBoard[x + 1, y].B_type != Building.Type.Empty)
+        else if (i_x != getSizeX - 1 && getBoard[i_x + 1, i_y] != null && getBoard[i_x + 1, i_y].B_type != TypeEnvironement.Empty)
         {
-            tile = getBoard[x + 1, y];
+            tile = getBoard[i_x + 1, i_y];
         }
-        else if (y != getSizeY - 1 && getBoard[x, y + 1] != null && getBoard[x, y + 1].B_type != Building.Type.Empty)
+        else if (i_y != getSizeY - 1 && getBoard[i_x, i_y + 1] != null && getBoard[i_x, i_y + 1].B_type != TypeEnvironement.Empty)
         {
-            tile = getBoard[x, y + 1];
+            tile = getBoard[i_x, i_y + 1];
         }
-        else if (y != 0 && getBoard[x, y - 1] != null && getBoard[x, y - 1].B_type != Building.Type.Empty)
+        else if (i_y != 0 && getBoard[i_x, i_y - 1] != null && getBoard[i_x, i_y - 1].B_type != TypeEnvironement.Empty)
         {
-            tile = getBoard[x, y - 1];
+            tile = getBoard[i_x, i_y - 1];
         }
         return tile;
     }
 
-    public int GetNextValueFromToStep1(int from, int to)
+    public int GetNextValueFromToStep1(int i_from, int i_to)
     {
-        if(from > to)
+        if(i_from > i_to)
         {
-            from--;
+            i_from--;
         }
-        else if(from < to)
+        else if(i_from < i_to)
         {
-            from++;
+            i_from++;
         }
-        return from;
+        return i_from;
     }
     public void Attack(Building building)
     {
         building.TakeDamage(I_firePower);
     }
 
-    public void TakeDamage(int I_Damage)
+    public void TakeDamage(int i_damage)
     {
-        I_currentLife -= I_Damage;
+        I_currentLife -= i_damage;
 
-        float f_ratio = I_currentLife / I_maxLife;
+        float f_ratio = (float)I_currentLife / (float)I_maxLife;
         float f_colorValue = 255 * f_ratio; // Risque d'être tout noir, à tester.
         this.GetComponent<SpriteRenderer>().color = new Color(f_colorValue, f_colorValue, f_colorValue);
 

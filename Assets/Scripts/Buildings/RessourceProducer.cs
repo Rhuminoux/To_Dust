@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static EnumGame;
 
 public class RessourceProducer : Building
 {
@@ -15,7 +16,7 @@ public class RessourceProducer : Building
     new void Start()
     {
         base.Start();
-        ActualBuildingType = Type.RessourcesProducer;
+        ActualBuildingType = TypeEnvironement.RessourcesProducer;
         TimeDayNightManager.TimePassed += AddRessourcesToStock_TimePassed;
     }
 
@@ -29,5 +30,15 @@ public class RessourceProducer : Building
         I_ressource = (int)this.GetType().GetField("I_ressourceL" + level).GetValue(this);
         I_maxLife = (int)this.GetType().GetField("I_maxLifeL" + level).GetValue(this);
         I_regenPoint = (int)this.GetType().GetField("I_regenPointL" + level).GetValue(this);
+    }
+
+    public override void Die()
+    {
+        if (ActualLifeStatus == LifeStatus.Dead)
+        {
+            TimeDayNightManager.TimePassed -= Regen_TimePassed;
+            TimeDayNightManager.TimePassed -= AddRessourcesToStock_TimePassed;
+            Destroy(this.gameObject);
+        }
     }
 }
