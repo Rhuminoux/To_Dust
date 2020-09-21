@@ -89,7 +89,7 @@ public class TileManager : MonoBehaviour
     {
         for (int i = 0; i < size_x; ++i)
             for (int j = 0; j < size_y; ++j)
-                if (board[i, j] != null && board[i, j].B_type == 0)
+                if (board[i, j] != null && board[i, j].typeEnvironement == TypeEnvironement.Road)
                     board[i, j].gameObject.GetComponent<SpriteRenderer>().sprite = GetTileSprite(i, j);
     }
 

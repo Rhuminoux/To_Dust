@@ -5,7 +5,7 @@ using static EnumGame;
 
 public class Tile : MonoBehaviour
 {
-    public TypeEnvironement B_type = TypeEnvironement.Empty;
+    public TypeEnvironement typeEnvironement = TypeEnvironement.Empty;
     public int I_x;
     public int I_y;
 

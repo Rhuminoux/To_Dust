@@ -32,13 +32,10 @@ public class RessourceProducer : Building
         I_regenPoint = (int)this.GetType().GetField("I_regenPointL" + level).GetValue(this);
     }
 
-    public override void Die()
+    public new void OnDestroy()
     {
-        if (ActualLifeStatus == LifeStatus.Dead)
-        {
-            TimeDayNightManager.TimePassed -= Regen_TimePassed;
-            TimeDayNightManager.TimePassed -= AddRessourcesToStock_TimePassed;
-            Destroy(this.gameObject);
-        }
+        TimeDayNightManager.TimePassed -= Regen_TimePassed;
+        TimeDayNightManager.TimePassed -= AddRessourcesToStock_TimePassed;
+        base.OnDestroy();
     }
 }

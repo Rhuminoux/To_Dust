@@ -14,9 +14,9 @@ public abstract class Building : MonoBehaviour
 
     [Header("Board Settings")]
     public GameObject GO_tileManager;
-    public Tile[,] getBoard { get => GO_tileManager.GetComponent<TileManager>().board; }
-    public int getSizeX { get => GO_tileManager.GetComponent<TileManager>().size_x; }
-    public int getSizeY { get => GO_tileManager.GetComponent<TileManager>().size_y; }
+    public Tile[,] GetBoard { get => GO_tileManager.GetComponent<TileManager>().board; }
+    public int GetSizeX { get => GO_tileManager.GetComponent<TileManager>().size_x; }
+    public int GetSizeY { get => GO_tileManager.GetComponent<TileManager>().size_y; }
 
     [Header("Health Settings")]
     public int I_currentLife = 100;
@@ -72,14 +72,8 @@ public abstract class Building : MonoBehaviour
 
         this.GetComponent<SpriteRenderer>().color = new Color(f_colorValue, f_colorValue, f_colorValue);
 
-        Die();
-    }
-
-    public virtual void Die()
-    {
         if (ActualLifeStatus == LifeStatus.Dead)
         {
-            TimeDayNightManager.TimePassed -= Regen_TimePassed;
             Destroy(this.gameObject);
         }
     }
@@ -90,27 +84,27 @@ public abstract class Building : MonoBehaviour
         int y = this.GetComponent<Tile>().I_y;
         int countBuildings = 0;
 
-        if (x != 0 && getBoard[x - 1, y] != null && 
-            getBoard[x - 1, y].B_type != TypeEnvironement.Empty && getBoard[x - 1, y].B_type != TypeEnvironement.Road)
+        if (x != 0 && GetBoard[x - 1, y] != null && 
+            GetBoard[x - 1, y].typeEnvironement != TypeEnvironement.Empty && GetBoard[x - 1, y].typeEnvironement != TypeEnvironement.Road)
         {
             countBuildings++;
         }
-        if (x != getSizeX - 1 && getBoard[x + 1, y] != null && 
-            getBoard[x + 1, y].B_type != TypeEnvironement.Empty && getBoard[x + 1, y].B_type != TypeEnvironement.Road)
+        if (x != GetSizeX - 1 && GetBoard[x + 1, y] != null && 
+            GetBoard[x + 1, y].typeEnvironement != TypeEnvironement.Empty && GetBoard[x + 1, y].typeEnvironement != TypeEnvironement.Road)
         {
             countBuildings++;
         }
-        if (y != getSizeY - 1 && getBoard[x, y + 1] != null && 
-            getBoard[x, y + 1].B_type != TypeEnvironement.Empty && getBoard[x, y + 1].B_type != TypeEnvironement.Road)
+        if (y != GetSizeY - 1 && GetBoard[x, y + 1] != null && 
+            GetBoard[x, y + 1].typeEnvironement != TypeEnvironement.Empty && GetBoard[x, y + 1].typeEnvironement != TypeEnvironement.Road)
         {
             countBuildings++;
         }
-        if (y != 0 && getBoard[x, y - 1] != null && 
-            getBoard[x, y - 1].B_type != TypeEnvironement.Empty && getBoard[x, y - 1].B_type != TypeEnvironement.Road)
+        if (y != 0 && GetBoard[x, y - 1] != null && 
+            GetBoard[x, y - 1].typeEnvironement != TypeEnvironement.Empty && GetBoard[x, y - 1].typeEnvironement != TypeEnvironement.Road)
         {
             countBuildings++;
         }
-        Debug.Log("cb : " + countBuildings);
+
         return countBuildings;
     }
 
@@ -140,5 +134,9 @@ public abstract class Building : MonoBehaviour
         }
     }
 
-
+    protected void OnDestroy()
+    {
+        GetBoard[this.GetComponent<Tile>().I_x, this.GetComponent<Tile>().I_y].typeEnvironement = TypeEnvironement.Empty;
+        TimeDayNightManager.TimePassed -= Regen_TimePassed;
+    }
 }

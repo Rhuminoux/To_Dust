@@ -20,9 +20,9 @@ public class Enemy : MonoBehaviour
 
     [Header("Board Settings")]
     public GameObject GO_tileManager;
-    public Tile[,] getBoard { get => GO_tileManager.GetComponent<TileManager>().board; }
-    public int getSizeX { get => GO_tileManager.GetComponent<TileManager>().size_x; }
-    public int getSizeY { get => GO_tileManager.GetComponent<TileManager>().size_y; }
+    public Tile[,] GetBoard { get => GO_tileManager.GetComponent<TileManager>().board; }
+    public int GetSizeX { get => GO_tileManager.GetComponent<TileManager>().size_x; }
+    public int GetSizeY { get => GO_tileManager.GetComponent<TileManager>().size_y; }
 
     [Header("Power Settings")]
     public int I_firePower = 5;
@@ -73,8 +73,8 @@ public class Enemy : MonoBehaviour
         {
             this.GetComponent<Tile>().I_y = GetNextValueFromToStep1(i_currentY, tile.I_y);
         }
-        getBoard[i_currentX, i_currentY] = null;
-        getBoard[this.GetComponent<Tile>().I_x, this.GetComponent<Tile>().I_y] = this.GetComponent<Tile>();
+        GetBoard[i_currentX, i_currentY].typeEnvironement = TypeEnvironement.Empty;
+        GetBoard[this.GetComponent<Tile>().I_x, this.GetComponent<Tile>().I_y] = this.GetComponent<Tile>();
 
         Vector3 v3_newPosition = new Vector3((float)this.GetComponent<Tile>().I_x, (float)this.GetComponent<Tile>().I_y, 0);
         this.gameObject.transform.position = v3_newPosition; 
@@ -114,27 +114,27 @@ public class Enemy : MonoBehaviour
         Tile tile = null;
         int i_myX = this.GetComponent<Tile>().I_x;
 
-        int i_borderX = i_myX >= (int)getSizeX / 2 ? getSizeX : 0;
+        int i_borderX = i_myX >= (int)GetSizeX / 2 ? GetSizeX : 0;
         
-        if(i_borderX == getSizeX)
+        if(i_borderX == GetSizeX)
         {
 
-            int i_x = getSizeX;
+            int i_x = GetSizeX;
             while(tile == null && i_x > 0)
             {
                 i_x--;
-                if (i_x != 0 && i_y != 0 && getBoard[i_x, i_y] != null && getBoard[i_x, i_y].B_type !=TypeEnvironement.Empty)
-                    tile = getBoard[i_x, i_y];
+                if (i_x != 0 && i_y != 0 && GetBoard[i_x, i_y] != null && GetBoard[i_x, i_y].typeEnvironement !=TypeEnvironement.Empty)
+                    tile = GetBoard[i_x, i_y];
             }
         }
         else
         {
             int i_x = 0;
-            while (tile == null && i_x > getSizeX)
+            while (tile == null && i_x > GetSizeX)
             {
                 i_x++;
-                if (i_x != 0 && i_y != 0 && getBoard[i_x, i_y] != null && getBoard[i_x, i_y].B_type != TypeEnvironement.Empty)
-                    tile = getBoard[i_x, i_y];
+                if (i_x != 0 && i_y != 0 && GetBoard[i_x, i_y] != null && GetBoard[i_x, i_y].typeEnvironement != TypeEnvironement.Empty)
+                    tile = GetBoard[i_x, i_y];
             }
         }
 
@@ -148,21 +148,21 @@ public class Enemy : MonoBehaviour
         
         Tile tile = null;
 
-        if (i_x != 0 && getBoard[i_x - 1, i_y] != null && getBoard[i_x - 1, i_y].B_type != TypeEnvironement.Empty)
+        if (i_x != 0 && GetBoard[i_x - 1, i_y] != null && GetBoard[i_x - 1, i_y].typeEnvironement != TypeEnvironement.Empty)
         {
-            tile = getBoard[i_x - 1, i_y];
+            tile = GetBoard[i_x - 1, i_y];
         }
-        else if (i_x != getSizeX - 1 && getBoard[i_x + 1, i_y] != null && getBoard[i_x + 1, i_y].B_type != TypeEnvironement.Empty)
+        else if (i_x != GetSizeX - 1 && GetBoard[i_x + 1, i_y] != null && GetBoard[i_x + 1, i_y].typeEnvironement != TypeEnvironement.Empty)
         {
-            tile = getBoard[i_x + 1, i_y];
+            tile = GetBoard[i_x + 1, i_y];
         }
-        else if (i_y != getSizeY - 1 && getBoard[i_x, i_y + 1] != null && getBoard[i_x, i_y + 1].B_type != TypeEnvironement.Empty)
+        else if (i_y != GetSizeY - 1 && GetBoard[i_x, i_y + 1] != null && GetBoard[i_x, i_y + 1].typeEnvironement != TypeEnvironement.Empty)
         {
-            tile = getBoard[i_x, i_y + 1];
+            tile = GetBoard[i_x, i_y + 1];
         }
-        else if (i_y != 0 && getBoard[i_x, i_y - 1] != null && getBoard[i_x, i_y - 1].B_type != TypeEnvironement.Empty)
+        else if (i_y != 0 && GetBoard[i_x, i_y - 1] != null && GetBoard[i_x, i_y - 1].typeEnvironement != TypeEnvironement.Empty)
         {
-            tile = getBoard[i_x, i_y - 1];
+            tile = GetBoard[i_x, i_y - 1];
         }
         return tile;
     }
@@ -194,6 +194,7 @@ public class Enemy : MonoBehaviour
 
         if (ActualLifeStatus == LifeStatus.Dead)
         {
+            GetBoard[this.GetComponent<Tile>().I_x, this.GetComponent<Tile>().I_y].typeEnvironement = TypeEnvironement.Empty;
             Destroy(this.GetComponent<GameObject>());
         }
     }

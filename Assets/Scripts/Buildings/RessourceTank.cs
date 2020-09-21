@@ -28,8 +28,9 @@ public class RessourceTank : Building
         I_regenPoint = (int)this.GetType().GetField("I_regenPointL" + level).GetValue(this);
     }
 
-    public void OnDestroy()
+    public new void OnDestroy()
     {
         GO_ressourcesManager.GetComponent<RessourcesManager>().AddLimitStock(- I_ressourceTank);
+        base.OnDestroy();
     }
 }
