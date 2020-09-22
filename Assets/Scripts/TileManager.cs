@@ -43,12 +43,16 @@ public class TileManager : MonoBehaviour
                 else
                 {
                     GameObject.Instantiate(background_sprites[1], new Vector3(i, j, 0), new Quaternion(0, 0, 0, 0), water_tiles_p.transform);
+                    Tile emptyTile = gameObject.AddComponent<Tile>();
+                    emptyTile.SetPosition(i, j);
+                    board[i, j] = emptyTile;
                 }
             }
         }
         newTile = GameObject.Instantiate(base_tile, new Vector3(size_x / 2, 1, -0.1f), new Quaternion(0, 0, 0, 0), coral_tiles_p.transform);
         newTile.GetComponent<SpriteRenderer>().sprite = road_sprite[4];
         newTile.GetComponent<Tile>().SetPosition(size_x / 2, 1);
+        newTile.GetComponent<Tile>().typeEnvironement = TypeEnvironement.Road;
         board[size_x / 2, 1] = newTile.GetComponent<Tile>();
     }
 
@@ -89,7 +93,7 @@ public class TileManager : MonoBehaviour
     {
         for (int i = 0; i < size_x; ++i)
             for (int j = 0; j < size_y; ++j)
-                if (board[i, j] != null && board[i, j].typeEnvironement == TypeEnvironement.Road)
+                if (board[i, j] != null && board[i, j] != null && board[i, j].typeEnvironement == TypeEnvironement.Road)
                     board[i, j].gameObject.GetComponent<SpriteRenderer>().sprite = GetTileSprite(i, j);
     }
 
@@ -102,13 +106,13 @@ public class TileManager : MonoBehaviour
     {
         int result = 0;
 
-        if (x != 0 && board[x - 1, y] != null)
+        if (x != 0 && board[x - 1, y] != null && board[x - 1, y].typeEnvironement != TypeEnvironement.Empty)
             result += 8;
-        if (x != size_x - 1 && board[x + 1, y] != null)
+        if (x != size_x - 1 && board[x + 1, y] != null && board[x + 1, y].typeEnvironement != TypeEnvironement.Empty)
             result += 2;
-        if (y != size_y - 1 && board[x, y + 1] != null)
+        if (y != size_y - 1 && board[x, y + 1] != null && board[x, y + 1].typeEnvironement != TypeEnvironement.Empty)
             result += 1;
-        if (y != 0 && board[x, y - 1] != null)
+        if (y != 0 && board[x, y - 1] != null && board[x, y - 1].typeEnvironement != TypeEnvironement.Empty)
             result += 4;
         return result;
     }

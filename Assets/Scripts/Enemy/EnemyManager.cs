@@ -12,13 +12,17 @@ public class EnemyManager : MonoBehaviour
     public Tile[,] GetBoard { get => GO_tileManager.GetComponent<TileManager>().board; }
     public int GetSizeX { get => GO_tileManager.GetComponent<TileManager>().size_x; }
     public int GetSizeY { get => GO_tileManager.GetComponent<TileManager>().size_y; }
-    private void Awake()
-    {
-        GO_tileManager = GameObject.FindWithTag("TileManager");
-    }
+   
 
     void Start()
     {
+        GO_tileManager = GameObject.FindWithTag("TileManager");
+        if (GO_tileManager == null || GetBoard == null)
+        {
+            Invoke("Start", float.MinValue);
+            return;
+        }
+
         List<Tile> list_tile;
         list_tile = GetAllEmptyTiles();
         Tile random_empty_tile = GetRandomTile(list_tile);
