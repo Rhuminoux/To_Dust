@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6738827155350390774}
   - component: {fileID: 2568681980615878670}
   - component: {fileID: 3022436489792038594}
-  - component: {fileID: 7448732302794469552}
   - component: {fileID: 804544154417594332}
   m_Layer: 0
   m_Name: Enemy
@@ -28,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6656432058737671667}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 0.39, y: 0.39, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 74ae2e74795e525479ff53899a38afc0, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.028301895, g: 0.021226421, b: 0.021226421, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,26 +98,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   I_currentLife: 15
   I_maxLife: 15
-  GO_tileManager: {fileID: 0}
-  I_firePower: 5
-  F_fireRate: 1
-  I_sizeX: 1
-  I_sizeZ: 1
---- !u!114 &7448732302794469552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6656432058737671667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 573731145df09fd42a5e69c5d31cbd72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  typeEnvironement: -2
-  I_x: 0
-  I_y: 0
+  range: 1
+  speed: 1
+  _target: {fileID: 0}
 --- !u!61 &804544154417594332
 BoxCollider2D:
   m_ObjectHideFlags: 0

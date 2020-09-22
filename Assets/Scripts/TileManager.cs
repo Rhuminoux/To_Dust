@@ -32,6 +32,7 @@ public class TileManager : MonoBehaviour
 
     private void CreateMap()
     {
+        Tile emptyTile;
         for (int i = 0; i < size_x; ++i)
         {
             for (int j = 0; j < size_y; ++j)
@@ -43,7 +44,7 @@ public class TileManager : MonoBehaviour
                 else
                 {
                     GameObject.Instantiate(background_sprites[1], new Vector3(i, j, 0), new Quaternion(0, 0, 0, 0), water_tiles_p.transform);
-                    Tile emptyTile = gameObject.AddComponent<Tile>();
+                    emptyTile = gameObject.AddComponent<Tile>();
                     emptyTile.SetPosition(i, j);
                     board[i, j] = emptyTile;
                 }

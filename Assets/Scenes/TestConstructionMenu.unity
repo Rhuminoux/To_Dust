@@ -171,8 +171,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d82dd35d78bcb7d40b2c45b2996a995b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrefabEnemyTile: {fileID: 6656432058737671667, guid: b5817292a967b5e4a943f8246880b813, type: 3}
-  GO_tileManager: {fileID: 0}
+  PrefabEnemy:
+  - {fileID: 6656432058737671667, guid: b5817292a967b5e4a943f8246880b813, type: 3}
+  GO_tileManager: {fileID: 1168140645}
+  enemies: []
+  spawnTime: 5
+--- !u!114 &1168140645 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 914876251074645389, guid: f129eed112206964b8d979ee75035c24, type: 3}
+  m_PrefabInstance: {fileID: 7794944731969063180}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43865469814225c4a8606cae69b54fce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1251901025 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7794944732334894699, guid: f129eed112206964b8d979ee75035c24, type: 3}
