@@ -123,7 +123,8 @@ public class Enemy : MonoBehaviour
             while(tile == null && i_x > 0)
             {
                 i_x--;
-                if (i_x != 0 && i_y != 0 && GetBoard[i_x, i_y] != null && GetBoard[i_x, i_y].typeEnvironement !=TypeEnvironement.Empty)
+                if (i_x != 0 && i_y != 0 && GetBoard[i_x, i_y] != null 
+                    && GetBoard[i_x, i_y].typeEnvironement !=TypeEnvironement.Empty && GetBoard[i_x, i_y].typeEnvironement != TypeEnvironement.Enemy)
                     tile = GetBoard[i_x, i_y];
             }
         }
@@ -133,7 +134,8 @@ public class Enemy : MonoBehaviour
             while (tile == null && i_x > GetSizeX)
             {
                 i_x++;
-                if (i_x != 0 && i_y != 0 && GetBoard[i_x, i_y] != null && GetBoard[i_x, i_y].typeEnvironement != TypeEnvironement.Empty)
+                if (i_x != 0 && i_y != 0 && GetBoard[i_x, i_y] != null 
+                    && GetBoard[i_x, i_y].typeEnvironement != TypeEnvironement.Empty && GetBoard[i_x, i_y].typeEnvironement != TypeEnvironement.Enemy)
                     tile = GetBoard[i_x, i_y];
             }
         }
@@ -148,19 +150,23 @@ public class Enemy : MonoBehaviour
         
         Tile tile = null;
 
-        if (i_x != 0 && GetBoard[i_x - 1, i_y] != null && GetBoard[i_x - 1, i_y].typeEnvironement != TypeEnvironement.Empty)
+        if (i_x != 0 && GetBoard[i_x - 1, i_y] != null 
+            && GetBoard[i_x - 1, i_y].typeEnvironement != TypeEnvironement.Empty && GetBoard[i_x - 1, i_y].typeEnvironement != TypeEnvironement.Enemy)
         {
             tile = GetBoard[i_x - 1, i_y];
         }
-        else if (i_x != GetSizeX - 1 && GetBoard[i_x + 1, i_y] != null && GetBoard[i_x + 1, i_y].typeEnvironement != TypeEnvironement.Empty)
+        else if (i_x != GetSizeX - 1 && GetBoard[i_x + 1, i_y] != null
+            && GetBoard[i_x + 1, i_y].typeEnvironement != TypeEnvironement.Empty && GetBoard[i_x + 1, i_y].typeEnvironement != TypeEnvironement.Enemy)
         {
             tile = GetBoard[i_x + 1, i_y];
         }
-        else if (i_y != GetSizeY - 1 && GetBoard[i_x, i_y + 1] != null && GetBoard[i_x, i_y + 1].typeEnvironement != TypeEnvironement.Empty)
+        else if (i_y != GetSizeY - 1 && GetBoard[i_x, i_y + 1] != null
+            && GetBoard[i_x, i_y + 1].typeEnvironement != TypeEnvironement.Empty && GetBoard[i_x, i_y + 1].typeEnvironement != TypeEnvironement.Enemy)
         {
             tile = GetBoard[i_x, i_y + 1];
         }
-        else if (i_y != 0 && GetBoard[i_x, i_y - 1] != null && GetBoard[i_x, i_y - 1].typeEnvironement != TypeEnvironement.Empty)
+        else if (i_y != 0 && GetBoard[i_x, i_y - 1] != null
+            && GetBoard[i_x, i_y - 1].typeEnvironement != TypeEnvironement.Empty && GetBoard[i_x, i_y - 1].typeEnvironement != TypeEnvironement.Enemy)
         {
             tile = GetBoard[i_x, i_y - 1];
         }
