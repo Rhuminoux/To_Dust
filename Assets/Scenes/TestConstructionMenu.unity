@@ -128,70 +128,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6758271838503482352, guid: a405e81ab8eedb54db67e0d73235fc75, type: 3}
   m_PrefabInstance: {fileID: 6758271838635970217}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &205370269
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 205370270}
-  - component: {fileID: 205370271}
-  m_Layer: 0
-  m_Name: EnemyManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &205370270
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 205370269}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1251901025}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &205370271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 205370269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d82dd35d78bcb7d40b2c45b2996a995b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PrefabEnemy:
-  - {fileID: 6656432058737671667, guid: b5817292a967b5e4a943f8246880b813, type: 3}
-  GO_tileManager: {fileID: 1168140645}
-  enemies: []
-  spawnTime: 5
---- !u!114 &1168140645 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 914876251074645389, guid: f129eed112206964b8d979ee75035c24, type: 3}
-  m_PrefabInstance: {fileID: 7794944731969063180}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43865469814225c4a8606cae69b54fce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1251901025 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7794944732334894699, guid: f129eed112206964b8d979ee75035c24, type: 3}
-  m_PrefabInstance: {fileID: 7794944731969063180}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1281552858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -524,89 +460,85 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 914876251074645389, guid: f129eed112206964b8d979ee75035c24, type: 3}
-      propertyPath: coral_tiles_p
-      value: 
-      objectReference: {fileID: 1301825779}
-    - target: {fileID: 914876251074645389, guid: f129eed112206964b8d979ee75035c24, type: 3}
-      propertyPath: water_tiles_p
-      value: 
-      objectReference: {fileID: 1604490385}
-    - target: {fileID: 914876251074645389, guid: f129eed112206964b8d979ee75035c24, type: 3}
-      propertyPath: ground_tiles_p
-      value: 
-      objectReference: {fileID: 1632550336}
-    - target: {fileID: 7794944732334894697, guid: f129eed112206964b8d979ee75035c24, type: 3}
-      propertyPath: m_Name
-      value: Managers
-      objectReference: {fileID: 0}
-    - target: {fileID: 7794944732334894697, guid: f129eed112206964b8d979ee75035c24, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 7794944732334894699, guid: f129eed112206964b8d979ee75035c24, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 236.64021
-      objectReference: {fileID: 0}
-    - target: {fileID: 7794944732334894699, guid: f129eed112206964b8d979ee75035c24, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 516.392
-      objectReference: {fileID: 0}
-    - target: {fileID: 7794944732334894699, guid: f129eed112206964b8d979ee75035c24, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -42.88523
-      objectReference: {fileID: 0}
-    - target: {fileID: 7794944732334894699, guid: f129eed112206964b8d979ee75035c24, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7794944732334894699, guid: f129eed112206964b8d979ee75035c24, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7794944732334894699, guid: f129eed112206964b8d979ee75035c24, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7794944732334894699, guid: f129eed112206964b8d979ee75035c24, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7794944732334894699, guid: f129eed112206964b8d979ee75035c24, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7794944732334894699, guid: f129eed112206964b8d979ee75035c24, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7794944732334894699, guid: f129eed112206964b8d979ee75035c24, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7794944732334894699, guid: f129eed112206964b8d979ee75035c24, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7794944732570692410, guid: f129eed112206964b8d979ee75035c24, type: 3}
+    - target: {fileID: 620169488906461534, guid: f129eed112206964b8d979ee75035c24, type: 3}
       propertyPath: GO_TMP_ressource
       value: 
       objectReference: {fileID: 149618009}
-    - target: {fileID: 7794944732748264336, guid: f129eed112206964b8d979ee75035c24, type: 3}
-      propertyPath: background_tiles_p
-      value: 
+    - target: {fileID: 1442048311361452452, guid: f129eed112206964b8d979ee75035c24, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 236.64021
       objectReference: {fileID: 0}
-    - target: {fileID: 7794944732748264336, guid: f129eed112206964b8d979ee75035c24, type: 3}
-      propertyPath: coral_tiles_p
-      value: 
-      objectReference: {fileID: 1301825779}
-    - target: {fileID: 7794944732748264336, guid: f129eed112206964b8d979ee75035c24, type: 3}
+    - target: {fileID: 1442048311361452452, guid: f129eed112206964b8d979ee75035c24, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 516.392
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442048311361452452, guid: f129eed112206964b8d979ee75035c24, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -42.88523
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442048311361452452, guid: f129eed112206964b8d979ee75035c24, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442048311361452452, guid: f129eed112206964b8d979ee75035c24, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442048311361452452, guid: f129eed112206964b8d979ee75035c24, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442048311361452452, guid: f129eed112206964b8d979ee75035c24, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442048311361452452, guid: f129eed112206964b8d979ee75035c24, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442048311361452452, guid: f129eed112206964b8d979ee75035c24, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442048311361452452, guid: f129eed112206964b8d979ee75035c24, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442048311361452452, guid: f129eed112206964b8d979ee75035c24, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442048311511527072, guid: f129eed112206964b8d979ee75035c24, type: 3}
       propertyPath: water_tiles_p
       value: 
       objectReference: {fileID: 1604490385}
-    - target: {fileID: 7794944732748264336, guid: f129eed112206964b8d979ee75035c24, type: 3}
+    - target: {fileID: 1442048311511527072, guid: f129eed112206964b8d979ee75035c24, type: 3}
       propertyPath: ground_tiles_p
       value: 
       objectReference: {fileID: 1632550336}
+    - target: {fileID: 1442048311511527072, guid: f129eed112206964b8d979ee75035c24, type: 3}
+      propertyPath: coral_tiles_p
+      value: 
+      objectReference: {fileID: 1301825779}
+    - target: {fileID: 1752748044756098886, guid: f129eed112206964b8d979ee75035c24, type: 3}
+      propertyPath: PrefabEnemy.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752748044756098886, guid: f129eed112206964b8d979ee75035c24, type: 3}
+      propertyPath: enemies.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752748044756098886, guid: f129eed112206964b8d979ee75035c24, type: 3}
+      propertyPath: enemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 6656432058737671667, guid: b5817292a967b5e4a943f8246880b813, type: 3}
+    - target: {fileID: 1752748044756098886, guid: f129eed112206964b8d979ee75035c24, type: 3}
+      propertyPath: PrefabEnemy.Array.data[0]
+      value: 
+      objectReference: {fileID: 6656432058737671667, guid: b5817292a967b5e4a943f8246880b813, type: 3}
+    - target: {fileID: 7595050775899532039, guid: f129eed112206964b8d979ee75035c24, type: 3}
+      propertyPath: m_Name
+      value: Managers
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f129eed112206964b8d979ee75035c24, type: 3}

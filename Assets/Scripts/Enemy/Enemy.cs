@@ -16,6 +16,9 @@ public class Enemy : MonoBehaviour
 
     private GameObject _target;
     private float dist = 1000;
+
+    private int _attack_speed = 1;
+    private int _time_to_attack;
     private void Start()
     {
         GetTarget();
@@ -34,7 +37,21 @@ public class Enemy : MonoBehaviour
             transform.position += transform.right * Time.deltaTime * speed;
             dist = Vector3.Distance(this.transform.position, _target.transform.position);
         }
+        else
+        {
+            if (_time_to_attack < 0)
+            {
+                Attack();
+                _time_to_attack = _attack_speed;
+            }
+        }
     }
+
+    private void Attack()
+    {
+        //_target.GetComponent<>();
+    }
+
 
     public void GetTarget()
     {
