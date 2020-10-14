@@ -9,6 +9,7 @@ TagManager:
   - BMenu
   - RessourcesManager
   - TileManager
+  - EnemyManager
   layers:
   - Default
   - TransparentFX

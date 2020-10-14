@@ -100,6 +100,7 @@ MonoBehaviour:
   I_maxLife: 15
   range: 1
   speed: 1
+  attack: 3
 --- !u!61 &804544154417594332
 BoxCollider2D:
   m_ObjectHideFlags: 0

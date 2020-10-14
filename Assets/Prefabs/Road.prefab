@@ -141,7 +141,7 @@ MonoBehaviour:
   ActualBuildingType: 0
   GO_ressourcesManager: {fileID: 0}
   GO_tileManager: {fileID: 0}
-  I_currentLife: 15
+  I_currentLife: 10
   I_maxLife: 100
   I_regenPoint: 1
   I_creationCost: 10

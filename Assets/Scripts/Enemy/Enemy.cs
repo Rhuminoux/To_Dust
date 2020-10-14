@@ -13,12 +13,13 @@ public class Enemy : MonoBehaviour
     public int I_maxLife = 15;
     public int range = 1;
     public int speed = 1;
+    public int attack = 1;
 
     private GameObject _target;
     private float dist = 1000;
 
     private int _attack_speed = 1;
-    private int _time_to_attack;
+    private float _time_to_attack;
     private void Start()
     {
         GetTarget();
@@ -31,25 +32,34 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (dist > range)
+        if (_target != null)
         {
-            transform.right = _target.transform.position - transform.position;
-            transform.position += transform.right * Time.deltaTime * speed;
-            dist = Vector3.Distance(this.transform.position, _target.transform.position);
-        }
-        else
-        {
-            if (_time_to_attack < 0)
+            if (dist > range)
             {
-                Attack();
-                _time_to_attack = _attack_speed;
+                transform.right = _target.transform.position - transform.position;
+                transform.position += transform.right * Time.deltaTime * speed;
+                dist = Vector3.Distance(this.transform.position, _target.transform.position);
+            }
+            else
+            {
+                _time_to_attack -= Time.deltaTime;
+                if (_time_to_attack < 0)
+                {
+                    Attack();
+                    _time_to_attack = _attack_speed;
+                }
             }
         }
+        else
+            GetTarget();
     }
 
     private void Attack()
     {
-        //_target.GetComponent<>();
+        if (_target != null)
+            _target.GetComponent<Building>().TakeDamage(attack);
+        else
+            GetTarget();
     }
 
 

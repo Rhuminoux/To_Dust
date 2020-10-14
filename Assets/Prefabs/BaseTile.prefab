@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2957015713361875838}
   - component: {fileID: 2437790053380833207}
   - component: {fileID: 7102035189498786251}
+  - component: {fileID: 1021180119093244397}
   m_Layer: 0
   m_Name: BaseTile
   m_TagString: Untagged
@@ -96,6 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573731145df09fd42a5e69c5d31cbd72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeEnvironement: -1
+  I_x: 0
+  I_y: 0
 --- !u!61 &7102035189498786251
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -122,3 +126,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.55, y: 2.55}
   m_EdgeRadius: 0
+--- !u!114 &1021180119093244397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4626028119317115056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9518c922fbd2d8c4caafd0a78a4037b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActualBuildingType: 0
+  GO_ressourcesManager: {fileID: 0}
+  GO_tileManager: {fileID: 0}
+  I_currentLife: 10
+  I_maxLife: 100
+  I_regenPoint: 1
+  I_creationCost: 10
+  I_level: 1
+  I_upgradeCostL2: 50
+  I_upgradeCostL3: 100
+  I_maxLifeL2: 150
+  I_maxLifeL3: 150
+  I_regenPointL2: 2
+  I_regenPointL3: 3
+  I_maxLevel: 3
+  I_sizeX: 1
+  I_sizeZ: 1

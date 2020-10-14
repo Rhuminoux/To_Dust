@@ -536,6 +536,10 @@ PrefabInstance:
       propertyPath: PrefabEnemy.Array.data[0]
       value: 
       objectReference: {fileID: 6656432058737671667, guid: b5817292a967b5e4a943f8246880b813, type: 3}
+    - target: {fileID: 3976922565291519362, guid: f129eed112206964b8d979ee75035c24, type: 3}
+      propertyPath: m_TagString
+      value: EnemyManager
+      objectReference: {fileID: 0}
     - target: {fileID: 7595050775899532039, guid: f129eed112206964b8d979ee75035c24, type: 3}
       propertyPath: m_Name
       value: Managers
